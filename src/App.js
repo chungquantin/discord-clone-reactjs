@@ -1,7 +1,8 @@
 import React from "react";
-import { FormTemplate } from "./components";
+import { BirthdayFormContainer } from "./container";
+
 function App() {
-	return <FormTemplate />;
+	return <BirthdayFormContainer />;
 }
 
 export default App;

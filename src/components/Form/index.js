@@ -1,5 +1,6 @@
 import React from "react";
 import * as Style from "./styles/Form";
+import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 
 function Form({ children, ...restProps }) {
 	return (
@@ -15,7 +16,7 @@ Form.Button = function FormButton({ children, ...restProps }) {
 
 Form.Link = function FormLink({ to, children, ...restProps }) {
 	return (
-		<Style.Link to={to} {...restProps}>
+		<Style.Link href={to} {...restProps}>
 			{children}
 		</Style.Link>
 	);
@@ -28,16 +29,21 @@ Form.Label = function FormLabel({ children, ...restProps }) {
 Form.Inner = function FormInner({ children, ...restProps }) {
 	return <Style.Inner {...restProps}>{children}</Style.Inner>;
 };
-Form.Select = function FormSelect({ placeholder, children, ...restProps }) {
+Form.Select = function FormSelect({ children, ...restProps }) {
 	return (
-		<Style.Select placeholder={placeholder} {...restProps}>
-			{children}
-		</Style.Select>
+		<div style={{ position: "relative" }}>
+			<Style.Icon icon={faChevronDown} />
+			<Style.Select {...restProps}>{children}</Style.Select>
+		</div>
 	);
 };
 
-Form.Option = function FormOption({ value, children, ...restProps }) {
-	return <Style.Option value={value} {...restProps} />;
+Form.Option = function FormOption({ value, text, children, ...restProps }) {
+	return (
+		<Style.Option value={value} {...restProps}>
+			{text}
+		</Style.Option>
+	);
 };
 
 Form.Header = function FormHeader({ children, ...restProps }) {

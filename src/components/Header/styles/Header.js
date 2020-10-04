@@ -4,7 +4,7 @@ export const Container = styled.div``;
 
 export const Background = styled.img`
 	position: fixed;
-	z-index: -3;
+	z-index: -4;
 	height: 100%;
 	width: 100%;
 	object-fit: cover;

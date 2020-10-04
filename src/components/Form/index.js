@@ -2,15 +2,23 @@ import React from "react";
 import * as Style from "./styles/Form";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 
-function Form({ width, minHeight, bgColor, children, ...restProps }) {
-	return (
-		<Style.Container {...restProps}>
-			<Style.Inner width={width} bgColor={bgColor} minHeight={minHeight}>
-				{children}
-			</Style.Inner>
-		</Style.Container>
-	);
+function Form({ children, ...restProps }) {
+	return <Style.Container {...restProps}>{children}</Style.Container>;
 }
+
+Form.Inner = function FormInner({
+	width,
+	minHeight,
+	bgColor,
+	children,
+	...restProps
+}) {
+	return (
+		<Style.Inner width={width} bgColor={bgColor} minHeight={minHeight}>
+			{children}
+		</Style.Inner>
+	);
+};
 
 Form.Button = function FormButton({ children, ...restProps }) {
 	return <Style.Button {...restProps}>{children}</Style.Button>;

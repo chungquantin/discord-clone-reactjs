@@ -15,7 +15,6 @@ export const Container = styled.div`
 			padding: 32px;
 			z-index: 1;
 			width: 100%;
-			border-radius: 0 2px 10px 0 rgba(0, 0, 0, 0.2);
 			justify-content: space-between;
 			.__login_input_area {
 				padding-top: 10px;
@@ -47,6 +46,18 @@ export const Container = styled.div`
 			}
 			.__login_qr_area {
 				width: 240px;
+				.__qr_header {
+					color: white;
+					font-size: 24px;
+					text-align: center;
+				}
+				.__qr_body {
+					margin-top: 10px;
+					color: #bcbec1;
+					span {
+						font-weight: 700;
+					}
+				}
 			}
 		}
 	}

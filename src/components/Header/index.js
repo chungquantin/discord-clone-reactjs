@@ -10,11 +10,7 @@ Header.Frame = function HeaderFrame({ children, ...restProps }) {
 };
 
 Header.Background = function HeaderBackground({ src, children, ...restProps }) {
-	return (
-		<Style.Background src={src} {...restProps}>
-			{children}
-		</Style.Background>
-	);
+	return <Style.Background src={src} {...restProps} />;
 };
 
 Header.Logo = function HeaderLogo({ children, ...restProps }) {

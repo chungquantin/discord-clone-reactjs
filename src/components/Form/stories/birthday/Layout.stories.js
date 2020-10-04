@@ -9,7 +9,7 @@ export default {
 };
 
 export const Template = (args) => (
-	<Form>
+	<Form minHeight={"464px"} width={"685px"} bgColor={"white"}>
 		<FlexBox direction={"column"}>
 			<Form.Image src={"/assets/images/misc/birthday_sidebar.svg"} />
 		</FlexBox>

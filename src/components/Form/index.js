@@ -2,10 +2,12 @@ import React from "react";
 import * as Style from "./styles/Form";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 
-function Form({ children, ...restProps }) {
+function Form({ width, minHeight, bgColor, children, ...restProps }) {
 	return (
 		<Style.Container {...restProps}>
-			<Style.Inner>{children}</Style.Inner>
+			<Style.Inner width={width} bgColor={bgColor} minHeight={minHeight}>
+				{children}
+			</Style.Inner>
 		</Style.Container>
 	);
 }
@@ -60,6 +62,18 @@ Form.Image = function FormImage({ src, children, ...restProps }) {
 
 Form.Base = function FormBase({ children, ...restProps }) {
 	return <Style.Base {...restProps}>{children}</Style.Base>;
+};
+
+Form.Wrapper = function FormWrapper({ children, ...restProps }) {
+	return <Style.Wrapper {...restProps}>{children}</Style.Wrapper>;
+};
+
+Form.Input = function FormInput({ ...restProps }) {
+	return <Style.Input {...restProps} />;
+};
+
+Form.Text = function FormText({ children, ...restProps }) {
+	return <Style.Text>{children}</Style.Text>;
 };
 
 export default Form;

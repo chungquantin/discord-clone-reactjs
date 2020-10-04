@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Form, FlexBox } from "../components";
 import withOptions from "../hoc/withOptions";
 
@@ -20,7 +20,12 @@ function FormContainer() {
 		e.preventDefault();
 	};
 	return (
-		<Form>
+		<Form
+			style={{ opacity: "0.85" }}
+			minHeight={"464px"}
+			width={"685px"}
+			bgColor={"white"}
+		>
 			<FlexBox direction={"column"}>
 				<Form.Image src={"/assets/images/misc/birthday_sidebar.svg"} />
 			</FlexBox>
@@ -30,7 +35,7 @@ function FormContainer() {
 			>
 				<Form.Image
 					style={{ marginBottom: "10px" }}
-					src="/assets/images/misc/logo.svg"
+					src="/assets/images/logo/logo.svg"
 				/>
 				<Form.Header>Chào mừng bạn đến với Discord!</Form.Header>
 				<Form.Body>

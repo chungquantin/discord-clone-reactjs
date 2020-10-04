@@ -1,0 +1,4 @@
+/channel/:id -> Forward to registered account channel
+/channel/@me -> Forward to guest account channel (Based on browser IP address)
+/login -> Login page
+/signup -> Signup page

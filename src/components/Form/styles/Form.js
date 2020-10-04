@@ -32,6 +32,9 @@ export const Container = styled.div`
 					color: #889297;
 					width: 414.4px;
 					margin: 10px 0px;
+					&.__label_error {
+						color: red;
+					}
 				}
 				.__login_button {
 					margin-top: 10px;
@@ -42,6 +45,9 @@ export const Container = styled.div`
 					color: #7289da;
 					margin: 5px 0px 0px 0px;
 					font-size: 14px;
+				}
+				.__input_error {
+					border: 1px solid red;
 				}
 			}
 			.__login_qr_area {
@@ -166,7 +172,7 @@ export const Input = styled.input`
 	padding: 0px 16px;
 	transition: border 0.5s;
 	background-color: #36393f;
-	border: 1px solid #32353a;
+	border: 1.5px solid #32353a;
 	border-radius: 3px;
 	color: #dfe0e2;
 	&:focus {
@@ -179,4 +185,12 @@ export const Text = styled.h5`
 	color: #72767d;
 	margin-top: 15px;
 	font-weight: normal;
+`;
+
+export const ErrorText = styled.span`
+	color: red;
+	text-transform: none;
+	font-weight: normal;
+	margin-left: 5px;
+	font-style: italic;
 `;

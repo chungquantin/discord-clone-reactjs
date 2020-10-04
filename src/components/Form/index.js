@@ -14,7 +14,12 @@ Form.Inner = function FormInner({
 	...restProps
 }) {
 	return (
-		<Style.Inner width={width} bgColor={bgColor} minHeight={minHeight}>
+		<Style.Inner
+			width={width}
+			bgColor={bgColor}
+			minHeight={minHeight}
+			{...restProps}
+		>
 			{children}
 		</Style.Inner>
 	);
@@ -26,7 +31,7 @@ Form.Button = function FormButton({ children, ...restProps }) {
 
 Form.Link = function FormLink({ to, children, ...restProps }) {
 	return (
-		<Style.Link href={to} {...restProps}>
+		<Style.Link to={to} {...restProps}>
 			{children}
 		</Style.Link>
 	);
@@ -82,6 +87,10 @@ Form.Input = function FormInput({ ...restProps }) {
 
 Form.Text = function FormText({ children, ...restProps }) {
 	return <Style.Text>{children}</Style.Text>;
+};
+
+Form.Error = function FormText({ children, ...restProps }) {
+	return <Style.ErrorText>{children}</Style.ErrorText>;
 };
 
 export default Form;

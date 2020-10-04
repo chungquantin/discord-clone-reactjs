@@ -1,17 +1,75 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Form, Header, FlexBox } from "../components";
 import { QRContainer } from "../container";
+import * as ROUTES from "../constants/routes";
+
+const DAY_BG = "/assets/images/misc/login_bg.jpg";
+const NIGHT_BG = "/assets/images/misc/login_bg_night.jpg";
+const WOBBLY_THEME = "/assets/images/misc/wobblytheme.png";
+const FULL_LOGO = "/assets/images/logo/logo_full.svg";
 
 function Login() {
+	const [email, setEmail] = useState("");
+	const [emailError, setEmailError] = useState({ isExist: false, message: "" });
+
+	const [password, setPassword] = useState("");
+	const [passwordError, setPasswordError] = useState({
+		isExist: false,
+		message: "",
+	});
+
+	const [isEmpty, setIsEmpty] = useState(true);
+
+	const handleLogIn = (e) => {
+		e.preventDefault();
+
+		if (email.length < 10) {
+			setEmailError({
+				isExist: true,
+				message: "Địa chỉ email phải dài hơn 4 kí tự",
+			});
+		}
+		if (password.length < 4) {
+			setEmailError({
+				isExist: true,
+				message: "Mật khẩu phải dài hơn 4 kí tự",
+			});
+		}
+	};
+
+	useEffect(() => {
+		//TODO Refractor to avoid repetition in code
+		if (email.length < 6) {
+			setIsEmpty(true);
+			setEmailError({
+				isExist: true,
+				message: "Địa chỉ email phải dài hơn 4 kí tự",
+			});
+		} else {
+			setIsEmpty(false);
+			setEmailError({
+				isExist: false,
+				message: "",
+			});
+		}
+		if (password.length < 6) {
+			setIsEmpty(true);
+			setPasswordError({
+				isExist: true,
+				message: "Mật khẩu phải dài hơn 4 kí tự",
+			});
+		} else {
+			setIsEmpty(false);
+			setPasswordError({
+				isExist: false,
+				message: "",
+			});
+		}
+	}, [password, email]);
+
 	return (
 		<Header>
-			<Header.Background
-				src={
-					new Date().getHours() > 12
-						? "/assets/images/misc/login_bg_night.jpg"
-						: "/assets/images/misc/login_bg.jpg"
-				}
-			/>
+			<Header.Background src={new Date().getHours() > 12 ? NIGHT_BG : DAY_BG} />
 			<div
 				style={{
 					position: "absolute",
@@ -20,19 +78,21 @@ function Login() {
 					overflow: "hidden",
 				}}
 			>
-				<img
-					src="/assets/images/misc/wobblytheme.png"
-					style={{ height: "860px" }}
-				/>
+				<img src={WOBBLY_THEME} style={{ height: "860px" }} />
 			</div>
 			<Header.Frame>
 				<FlexBox direction="column">
-					<Header.Logo src={"/assets/images/logo/logo_full.svg"} />
+					<Header.Logo src={FULL_LOGO} />
 				</FlexBox>
 			</Header.Frame>
 			<Form.Wrapper>
 				<Form className="__hasNoBackground">
-					<Form.Inner width={"784px"} minHeight={"408px"} bgColor={"#383B41"}>
+					<Form.Inner
+						width={"784px"}
+						minHeight={"408px"}
+						bgColor={"#383B41"}
+						style={{ boxShadow: "0 2px 10px 0 rgba(0,0,0,.2)" }}
+					>
 						<FlexBox direction="row" className="__login_inner">
 							<FlexBox direction="column" className="__login_input_area">
 								<Form.Header className="__login_header">
@@ -41,18 +101,50 @@ function Login() {
 								<Form.Body className="__login_body">
 									Rất vui mừng khi được gặp lại bạn!
 								</Form.Body>
-								<Form.Base>
-									<Form.Label className="__login_label">Email</Form.Label>
-									<Form.Input type="email" />
-									<Form.Label className="__login_label">Mật khẩu</Form.Label>
-									<Form.Input type="password" />
+								<Form.Base onSubmit={handleLogIn}>
+									<Form.Label
+										className={`__login_label  ${
+											emailError.isExist === true && "__label_error"
+										}`}
+									>
+										Email
+										{emailError.isExist === true && (
+											<Form.Error>- &nbsp;{emailError.message}</Form.Error>
+										)}
+									</Form.Label>
+									<Form.Input
+										type="email"
+										className={emailError.isExist === true && "__input_error"}
+										onChange={(e) => setEmail(e.target.value)}
+									/>
+									<Form.Label
+										className={`__login_label  ${
+											passwordError.isExist === true && "__label_error"
+										}`}
+									>
+										Mật khẩu
+										{passwordError.isExist === true && (
+											<Form.Error>- &nbsp;{passwordError.message}</Form.Error>
+										)}
+									</Form.Label>
+									<Form.Input
+										type="password"
+										className={
+											passwordError.isExist === true && "__input_error"
+										}
+										onChange={(e) => setPassword(e.target.value)}
+									/>
 									<Form.Link className="__login_link">Quên mật khẩu?</Form.Link>
-									<Form.Button className="__login_button">
+									<Form.Button
+										className="__login_button"
+										type="submit"
+										disabled={isEmpty}
+									>
 										Đăng nhập
 									</Form.Button>
 									<Form.Text>
 										Cần một tài khoản?
-										<Form.Link className="__login_link">
+										<Form.Link to={ROUTES.__signup} className="__login_link">
 											&nbsp;Đăng ký
 										</Form.Link>
 									</Form.Text>

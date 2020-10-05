@@ -3,4 +3,9 @@ function validateEmail(email) {
 	return re.test(String(email).toLowerCase());
 }
 
-export { validateEmail };
+function validateUsername(username) {
+	const re = /^[a-zA-Z\-]+$/;
+	return re.test(String(username).toLowerCase());
+}
+
+export { validateEmail, validateUsername };

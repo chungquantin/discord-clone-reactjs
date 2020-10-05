@@ -1,6 +1,9 @@
 import React, { useState } from "react";
+// -- Components --
 import { Form, FlexBox } from "../components";
 import withOptions from "../higher-order-components/withOptions";
+// -- Constants --
+const __current_year__ = parseInt(new Date().getFullYear());
 
 function FormContainer() {
 	const [day, setDay] = useState(null);
@@ -8,8 +11,11 @@ function FormContainer() {
 	const [month, setMonth] = useState(null);
 	const MonthSelectWithOptions = withOptions(Form.Select)(1, 12, "Tháng");
 	const [year, setYear] = useState(null);
-	const currentYear = parseInt(new Date().getFullYear());
-	const YearSelectWithOptions = withOptions(Form.Select)(1900, currentYear, "");
+	const YearSelectWithOptions = withOptions(Form.Select)(
+		1900,
+		__current_year__,
+		""
+	);
 	let isEmpty = false;
 	if (day === null || month === null || year === null) {
 		isEmpty = true;

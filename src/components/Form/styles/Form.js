@@ -166,8 +166,11 @@ export const Container = styled.div`
 					color: white;
 				}
 				${Label} {
-					margin-bottom: 10px;
+					margin-bottom: 5px;
 					margin-top: 18px;
+					&.__label_error {
+						color: #f04747;
+					}
 				}
 				${Button} {
 					margin-top: 30px;
@@ -175,6 +178,20 @@ export const Container = styled.div`
 				${Select} {
 					background-color: #313339;
 					border: 1px solid #1b1c20;
+				}
+				${Text} {
+					margin-top: 30px;
+					font-size: 12px;
+					margin-bottom: 0;
+				}
+				${Link} {
+					&.__small_link {
+						font-size: 12px;
+						font-weight: 700px;
+					}
+				}
+				.__input_error {
+					border: 0.5px solid #f04747;
 				}
 			}
 		}

@@ -7,6 +7,7 @@ const DAY_BG = "/assets/images/misc/login_bg.jpg";
 const NIGHT_BG = "/assets/images/misc/login_bg_night.jpg";
 const WOBBLY_THEME = "/assets/images/misc/wobblytheme.png";
 const FULL_LOGO = "/assets/images/logo/logo_full.svg";
+const __current_hour__ = new Date().getHours();
 
 function Login() {
 	const [email, setEmail] = useState("");
@@ -22,44 +23,32 @@ function Login() {
 
 	const handleLogIn = (e) => {
 		e.preventDefault();
-
-		if (email.length < 10) {
-			setEmailError({
-				isExist: true,
-				message: "Địa chỉ email phải dài hơn 4 kí tự",
-			});
-		}
-		if (password.length < 4) {
-			setEmailError({
-				isExist: true,
-				message: "Mật khẩu phải dài hơn 4 kí tự",
-			});
-		}
 	};
 
 	useEffect(() => {
 		//TODO Refractor to avoid repetition in code
-		if (email.length < 6) {
+		if (email.length < 8 || password.length < 6) {
 			setIsEmpty(true);
+		} else {
+			setIsEmpty(false);
+		}
+		if (email.length < 8) {
 			setEmailError({
 				isExist: true,
 				message: "Địa chỉ email phải dài hơn 4 kí tự",
 			});
 		} else {
-			setIsEmpty(false);
 			setEmailError({
 				isExist: false,
 				message: "",
 			});
 		}
 		if (password.length < 6) {
-			setIsEmpty(true);
 			setPasswordError({
 				isExist: true,
 				message: "Mật khẩu phải dài hơn 4 kí tự",
 			});
 		} else {
-			setIsEmpty(false);
 			setPasswordError({
 				isExist: false,
 				message: "",
@@ -69,7 +58,9 @@ function Login() {
 
 	return (
 		<Header>
-			<Header.Background src={new Date().getHours() > 12 ? NIGHT_BG : DAY_BG} />
+			<Header.Background
+				src={__current_hour__ > 12 && __current_hour__ < 6 ? NIGHT_BG : DAY_BG}
+			/>
 			<div
 				style={{
 					position: "absolute",

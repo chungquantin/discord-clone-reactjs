@@ -2,6 +2,10 @@ import React from "react";
 import { Route, BrowserRouter as Router } from "react-router-dom";
 import * as ROUTES from "./constants/routes";
 import { LoginPage, SignUpPage, DefaultChannelPage } from "./pages";
+// GraphQL & Apollo Client
+import ApolloClientServer from "./server/apollo";
+
+const client = ApolloClientServer();
 
 function App() {
 	return (

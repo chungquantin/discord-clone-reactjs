@@ -1,65 +1,79 @@
 import React, { useState, useEffect } from "react";
+// -- Components --
 import { Form, Header, FlexBox } from "../components";
 import { QRContainer } from "../container";
+// -- Utils --
+import { validateEmail } from "../utils/validate";
+// -- Backend --
+import { SIGN_IN } from "../server/graphql/mutations/index";
+// -- Constants --
 import * as ROUTES from "../constants/routes";
-
-const DAY_BG = "/assets/images/misc/login_bg.jpg";
-const NIGHT_BG = "/assets/images/misc/login_bg_night.jpg";
-const WOBBLY_THEME = "/assets/images/misc/wobblytheme.png";
-const FULL_LOGO = "/assets/images/logo/logo_full.svg";
+import * as ASSETS from "../constants/assets";
 const __current_hour__ = new Date().getHours();
 
 function Login() {
 	const [email, setEmail] = useState("");
 	const [emailError, setEmailError] = useState({ isExist: false, message: "" });
-
 	const [password, setPassword] = useState("");
 	const [passwordError, setPasswordError] = useState({
 		isExist: false,
 		message: "",
 	});
-
-	const [isEmpty, setIsEmpty] = useState(true);
+	const [errorCounter, setErrorCounter] = useState(0);
 
 	const handleLogIn = (e) => {
 		e.preventDefault();
 	};
 
 	useEffect(() => {
-		//TODO Refractor to avoid repetition in code
-		if (email.length < 8 || password.length < 6) {
-			setIsEmpty(true);
-		} else {
-			setIsEmpty(false);
+		setErrorCounter(0);
+		function emailValidCase() {
+			if (email.length < 8) {
+				setEmailError({
+					isExist: true,
+					message: "Địa chỉ email phải dài hơn 4 kí tự",
+				});
+				setErrorCounter((errorCounter) => errorCounter + 1);
+			} else if (!validateEmail(email)) {
+				setEmailError({
+					isExist: true,
+					message: "Địa chỉ email không hợp lệ",
+				});
+				setErrorCounter((errorCounter) => errorCounter + 1);
+			} else {
+				setEmailError({
+					isExist: false,
+					message: "",
+				});
+			}
 		}
-		if (email.length < 8) {
-			setEmailError({
-				isExist: true,
-				message: "Địa chỉ email phải dài hơn 4 kí tự",
-			});
-		} else {
-			setEmailError({
-				isExist: false,
-				message: "",
-			});
+		function passwordValidCase() {
+			if (password.length < 6) {
+				setPasswordError({
+					isExist: true,
+					message: "Mật khẩu phải dài hơn 4 kí tự",
+				});
+				setErrorCounter((errorCounter) => errorCounter + 1);
+			} else {
+				setPasswordError({
+					isExist: false,
+					message: "",
+				});
+			}
 		}
-		if (password.length < 6) {
-			setPasswordError({
-				isExist: true,
-				message: "Mật khẩu phải dài hơn 4 kí tự",
-			});
-		} else {
-			setPasswordError({
-				isExist: false,
-				message: "",
-			});
-		}
-	}, [password, email]);
+		emailValidCase();
+		passwordValidCase();
+		console.log(errorCounter);
+	}, [email, password]);
 
 	return (
 		<Header>
 			<Header.Background
-				src={__current_hour__ > 12 && __current_hour__ < 6 ? NIGHT_BG : DAY_BG}
+				src={
+					__current_hour__ > 12 && __current_hour__ < 6
+						? ASSETS.NIGHT_BG
+						: ASSETS.DAY_BG
+				}
 			/>
 			<div
 				style={{
@@ -69,11 +83,15 @@ function Login() {
 					overflow: "hidden",
 				}}
 			>
-				<img src={WOBBLY_THEME} style={{ height: "860px" }} />
+				<img
+					src={ASSETS.WOBBLY_THEME}
+					style={{ height: "860px" }}
+					alt="Wobbly theme dark"
+				/>
 			</div>
 			<Header.Frame>
 				<FlexBox direction="column">
-					<Header.Logo src={FULL_LOGO} />
+					<Header.Logo src={ASSETS.FULL_LOGO} />
 				</FlexBox>
 			</Header.Frame>
 			<Form.Wrapper>
@@ -129,7 +147,7 @@ function Login() {
 									<Form.Button
 										className="__login_button"
 										type="submit"
-										disabled={isEmpty}
+										disabled={errorCounter > 0 ? true : false}
 									>
 										Đăng nhập
 									</Form.Button>

@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from "react";
 // -- Components --
-import { Form, Header, FlexBox } from "../components";
-import { QRContainer } from "../container";
+import { Form, FlexBox } from "../components";
+import { QRContainer, AuthHeaderContainer } from "../container";
 // -- Utils --
 import { validateEmail } from "../utils/validate";
 // -- Backend --
-import { SIGN_IN } from "../server/graphql/mutations/index";
+import { signInWithEmailAndPassword } from "../server/graphql/actions";
+import { useMutation } from "@apollo/client";
+import { SIGN_IN } from "../server/graphql/mutations";
 // -- Constants --
 import * as ROUTES from "../constants/routes";
-import * as ASSETS from "../constants/assets";
-const __current_hour__ = new Date().getHours();
 
 function Login() {
 	const [email, setEmail] = useState("");
@@ -20,80 +20,71 @@ function Login() {
 		message: "",
 	});
 	const [errorCounter, setErrorCounter] = useState(0);
+	const [signIn] = useMutation(SIGN_IN);
 
-	const handleLogIn = (e) => {
+	async function handleLogIn(e) {
 		e.preventDefault();
-	};
+		try {
+			let token = await signInWithEmailAndPassword(signIn, email, password);
+			localStorage.setItem("authUser", token);
+		} catch (error) {
+			setPasswordError({
+				isExist: true,
+				message: null,
+			});
+			setEmailError({
+				isExist: true,
+				message: `- ${error.message}`,
+			});
+		}
+	}
 
 	useEffect(() => {
 		setErrorCounter(0);
 		function emailValidCase() {
-			if (email.length < 8) {
-				setEmailError({
-					isExist: true,
-					message: "Địa chỉ email phải dài hơn 4 kí tự",
-				});
-				setErrorCounter((errorCounter) => errorCounter + 1);
-			} else if (!validateEmail(email)) {
-				setEmailError({
-					isExist: true,
-					message: "Địa chỉ email không hợp lệ",
-				});
-				setErrorCounter((errorCounter) => errorCounter + 1);
-			} else {
-				setEmailError({
-					isExist: false,
-					message: "",
-				});
+			if (email.length > 4) {
+				if (email.length < 8) {
+					setEmailError({
+						isExist: true,
+						message: "- Địa chỉ email phải dài hơn 4 kí tự",
+					});
+					setErrorCounter((errorCounter) => errorCounter + 1);
+				} else if (!validateEmail(email)) {
+					setEmailError({
+						isExist: true,
+						message: "- Địa chỉ email không hợp lệ",
+					});
+					setErrorCounter((errorCounter) => errorCounter + 1);
+				} else {
+					setEmailError({
+						isExist: false,
+						message: "",
+					});
+				}
 			}
 		}
 		function passwordValidCase() {
-			if (password.length < 6) {
-				setPasswordError({
-					isExist: true,
-					message: "Mật khẩu phải dài hơn 4 kí tự",
-				});
-				setErrorCounter((errorCounter) => errorCounter + 1);
-			} else {
-				setPasswordError({
-					isExist: false,
-					message: "",
-				});
+			if (email.length > 3) {
+				if (password.length < 6) {
+					setPasswordError({
+						isExist: true,
+						message: "- Mật khẩu phải dài hơn 4 kí tự",
+					});
+					setErrorCounter((errorCounter) => errorCounter + 1);
+				} else {
+					setPasswordError({
+						isExist: false,
+						message: "",
+					});
+				}
 			}
 		}
 		emailValidCase();
 		passwordValidCase();
-		console.log(errorCounter);
 	}, [email, password]);
 
 	return (
-		<Header>
-			<Header.Background
-				src={
-					__current_hour__ > 12 && __current_hour__ < 6
-						? ASSETS.NIGHT_BG
-						: ASSETS.DAY_BG
-				}
-			/>
-			<div
-				style={{
-					position: "absolute",
-					zIndex: -3,
-					height: "100vh",
-					overflow: "hidden",
-				}}
-			>
-				<img
-					src={ASSETS.WOBBLY_THEME}
-					style={{ height: "860px" }}
-					alt="Wobbly theme dark"
-				/>
-			</div>
-			<Header.Frame>
-				<FlexBox direction="column">
-					<Header.Logo src={ASSETS.FULL_LOGO} />
-				</FlexBox>
-			</Header.Frame>
+		<AuthHeaderContainer>
 			<Form.Wrapper>
 				<Form className="__hasNoBackground">
 					<Form.Inner
@@ -104,21 +95,15 @@ function Login() {
 					>
 						<FlexBox direction="row" className="__login_inner">
 							<FlexBox direction="column" className="__login_input_area">
-								<Form.Header className="__login_header">
-									Chào mừng trở lại!
-								</Form.Header>
-								<Form.Body className="__login_body">
-									Rất vui mừng khi được gặp lại bạn!
-								</Form.Body>
+								<Form.Header>Chào mừng trở lại!</Form.Header>
+								<Form.Body>Rất vui mừng khi được gặp lại bạn!</Form.Body>
 								<Form.Base onSubmit={handleLogIn}>
 									<Form.Label
-										className={`__login_label  ${
-											emailError.isExist === true && "__label_error"
-										}`}
+										className={emailError.isExist === true && "__label_error"}
 									>
 										Email
 										{emailError.isExist === true && (
-											<Form.Error>- &nbsp;{emailError.message}</Form.Error>
+											<Form.Error>{emailError.message}</Form.Error>
 										)}
 									</Form.Label>
 									<Form.Input
@@ -127,13 +112,13 @@ function Login() {
 										onChange={(e) => setEmail(e.target.value)}
 									/>
 									<Form.Label
-										className={`__login_label  ${
+										className={
 											passwordError.isExist === true && "__label_error"
-										}`}
+										}
 									>
 										Mật khẩu
 										{passwordError.isExist === true && (
-											<Form.Error>- &nbsp;{passwordError.message}</Form.Error>
+											<Form.Error>{passwordError.message}</Form.Error>
 										)}
 									</Form.Label>
 									<Form.Input
@@ -143,9 +128,10 @@ function Login() {
 										}
 										onChange={(e) => setPassword(e.target.value)}
 									/>
-									<Form.Link className="__login_link">Quên mật khẩu?</Form.Link>
+									<Form.Link>
+										<span>Quên mật khẩu?</span>
+									</Form.Link>
 									<Form.Button
-										className="__login_button"
 										type="submit"
 										disabled={errorCounter > 0 ? true : false}
 									>
@@ -153,18 +139,16 @@ function Login() {
 									</Form.Button>
 									<Form.Text>
 										Cần một tài khoản?
-										<Form.Link to={ROUTES.__signup} className="__login_link">
-											&nbsp;Đăng ký
+										<Form.Link to={ROUTES.__signup}>
+											&nbsp;<span>Đăng ký</span>
 										</Form.Link>
 									</Form.Text>
 								</Form.Base>
 							</FlexBox>
 							<FlexBox direction="column" className="__login_qr_area">
 								<QRContainer />
-								<Form.Header className="__qr_header">
-									Đăng nhập bằng mã QR
-								</Form.Header>
-								<Form.Body className="__qr_body">
+								<Form.Header>Đăng nhập bằng mã QR</Form.Header>
+								<Form.Body>
 									Quét bằng <span>ứng dụng di động Discord</span> đăng nhập tức
 									thì.
 								</Form.Body>
@@ -173,7 +157,7 @@ function Login() {
 					</Form.Inner>
 				</Form>
 			</Form.Wrapper>
-		</Header>
+		</AuthHeaderContainer>
 	);
 }
 

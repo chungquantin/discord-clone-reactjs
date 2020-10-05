@@ -1,3 +1,3 @@
 module.exports = {
-	uri: "https://localhost:8000/graphql",
+	uri: "http://localhost:3001/graphql",
 };

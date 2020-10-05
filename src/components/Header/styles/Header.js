@@ -16,9 +16,9 @@ export const Frame = styled.div`
 	display: flex;
 	position: fixed;
 	z-index: -2;
-	padding: 10px 20px;
+	padding: 7px 22px;
 `;
 
 export const Logo = styled.img`
-	height: 40px;
+	height: 35px;
 `;

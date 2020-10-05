@@ -2,73 +2,6 @@ import styled from "styled-components";
 import { Link as ReactRouterLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-export const Container = styled.div`
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	height: 100vh;
-	background-color: rgb(0, 0, 0);
-	&.__hasNoBackground {
-		background-color: unset;
-		.__login_inner {
-			padding: 32px;
-			z-index: 1;
-			width: 100%;
-			justify-content: space-between;
-			.__login_input_area {
-				padding-top: 10px;
-				width: 414.4px;
-				max-height: 340.6px;
-				.__login_header {
-					color: white;
-				}
-				.__login_body {
-					color: #b4b6b8;
-					margin-top: 10px;
-					margin-bottom: 5px;
-				}
-				.__login_label {
-					color: #889297;
-					width: 414.4px;
-					margin: 10px 0px;
-					&.__label_error {
-						color: #f04747;
-					}
-				}
-				.__login_button {
-					margin-top: 10px;
-					margin-bottom: 0px;
-				}
-				.__login_link {
-					font-weight: 500;
-					color: #7289da;
-					margin: 5px 0px 0px 0px;
-					font-size: 14px;
-				}
-				.__input_error {
-					border: 0.5px solid #f04747;
-				}
-			}
-			.__login_qr_area {
-				width: 240px;
-				.__qr_header {
-					color: white;
-					font-size: 24px;
-					text-align: center;
-				}
-				.__qr_body {
-					margin-top: 10px;
-					color: #bcbec1;
-					span {
-						font-weight: 700;
-					}
-				}
-			}
-		}
-	}
-`;
-
 export const Inner = styled.div`
 	min-height: ${({ minHeight }) => minHeight};
 	width: ${({ width }) => width};
@@ -124,6 +57,11 @@ export const Select = styled.select`
 	border-radius: 4px;
 	background-color: rgba(250, 250, 250, 0.767);
 	color: rgb(138, 138, 138);
+
+	&.__select_invert {
+		background-color: #313339;
+		border: 1.5px solid #222428;
+	}
 `;
 
 export const Option = styled.option``;
@@ -153,7 +91,8 @@ export const Icon = styled(FontAwesomeIcon)`
 	position: absolute;
 	cursor: pointer;
 	right: 23px;
-	color: rgb(46, 51, 56);
+	color: white;
+	mix-blend-mode: difference;
 	font-size: smaller;
 	top: 14px;
 `;
@@ -170,9 +109,9 @@ export const Wrapper = styled.div`
 export const Input = styled.input`
 	height: 40px;
 	padding: 0px 16px;
-	transition: border 0.5s;
+	transition: border 0.2s;
 	background-color: #32353a;
-	border: 1.5px solid #262524;
+	border: 1px solid #262524;
 	border-radius: 3px;
 	color: #dfe0e2;
 	&:focus {
@@ -193,4 +132,100 @@ export const ErrorText = styled.span`
 	font-weight: normal;
 	margin-left: 5px;
 	font-style: italic;
+`;
+
+export const Container = styled.div`
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+	background-color: rgb(0, 0, 0);
+	${"" /* External CSS Style  */}
+	&.__hasNoBackground {
+		background-color: unset;
+		${Link} {
+			font-weight: 500;
+			color: #7289da;
+			margin: 8px 0px 0px 0px;
+			font-size: 14px;
+			&:hover {
+				span {
+					border-bottom: 0.8px solid #7289da;
+				}
+			}
+		}
+		.__signup_inner {
+			box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.2);
+			padding: 32px;
+			${Base} {
+				width: 416px;
+				${Header} {
+					width: fit-content;
+					margin: 0px auto;
+					color: white;
+				}
+				${Label} {
+					margin-bottom: 10px;
+					margin-top: 18px;
+				}
+				${Button} {
+					margin-top: 30px;
+				}
+				${Select} {
+					background-color: #313339;
+					border: 1px solid #1b1c20;
+				}
+			}
+		}
+		.__login_inner {
+			padding: 32px;
+			z-index: 1;
+			width: 100%;
+			justify-content: space-between;
+			.__login_input_area {
+				padding-top: 10px;
+				width: 414.4px;
+				max-height: 340.6px;
+				${Header} {
+					color: white;
+				}
+				${Body} {
+					color: #b4b6b8;
+					margin-top: 10px;
+					margin-bottom: 5px;
+				}
+				${Label} {
+					color: #889297;
+					width: 414.4px;
+					margin: 10px 0px;
+					&.__label_error {
+						color: #f04747;
+					}
+				}
+				${Button} {
+					margin-top: 10px;
+					margin-bottom: 0px;
+				}
+				.__input_error {
+					border: 0.5px solid #f04747;
+				}
+			}
+			.__login_qr_area {
+				width: 240px;
+				${Header} {
+					color: white;
+					font-size: 24px;
+					text-align: center;
+				}
+				${Body} {
+					margin-top: 10px;
+					color: #bcbec1;
+					span {
+						font-weight: 700;
+					}
+				}
+			}
+		}
+	}
 `;

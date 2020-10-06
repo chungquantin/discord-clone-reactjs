@@ -1,8 +1,9 @@
 import styled from "styled-components";
 import { Link as ReactRouterLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { motion } from "framer-motion";
 
-export const Inner = styled.div`
+export const Inner = styled(motion.div)`
 	min-height: ${({ minHeight }) => minHeight};
 	width: ${({ width }) => width};
 	display: flex;

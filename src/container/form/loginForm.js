@@ -12,6 +12,7 @@ import * as ROUTES from "../../constants/routes";
 // -- Validate --
 import * as yup from "yup";
 import { validRuleSet } from "../../utils/validate";
+import { default as Animation } from "../../animations/login";
 
 const validationSchema = yup.object({
 	email: validRuleSet.email,
@@ -46,61 +47,66 @@ function LoginFormContainer() {
 			validationSchema={validationSchema}
 		>
 			{({ values, isSubmitting, handleSubmit, errors }) => (
-				<Form.Wrapper>
-					<Form className="__hasNoBackground">
-						<Form.Inner
-							width={"784px"}
-							minHeight={"408px"}
-							bgColor={"#383B41"}
-							style={{ boxShadow: "0 2px 10px 0 rgba(0,0,0,.2)" }}
-						>
-							<FlexBox direction="row" className="__login_inner">
-								<FlexBox direction="column" className="__login_input_area">
-									<Form.Header>Chào mừng trở lại!</Form.Header>
-									<Form.Body>Rất vui mừng khi được gặp lại bạn!</Form.Body>
-									<Form.Base onSubmit={handleSubmit}>
-										<Field
-											value={values.email}
-											type="input"
-											label="Email"
-											name="email"
-											errorText={errors.email || additionalError}
-											as={Form.InputWithLabelAndError}
-										/>
-										<Field
-											value={values.password}
-											type="password"
-											label="Mật khẩu"
-											name="password"
-											errorText={errors.password}
-											as={Form.InputWithLabelAndError}
-										/>
-										<Form.Link>
-											<span>Quên mật khẩu?</span>
-										</Form.Link>
-										<Form.Button type="submit" disabled={isSubmitting}>
-											Đăng nhập
-										</Form.Button>
-										<Form.Text>
-											Cần một tài khoản?
-											<Form.Link to={ROUTES.__signup}>
-												&nbsp;<span>Đăng ký</span>
-											</Form.Link>
-										</Form.Text>
-									</Form.Base>
-								</FlexBox>
-								<FlexBox direction="column" className="__login_qr_area">
-									<QRContainer />
-									<Form.Header>Đăng nhập bằng mã QR</Form.Header>
-									<Form.Body>
-										Quét bằng <span>ứng dụng di động Discord</span> đăng nhập
-										tức thì.
-									</Form.Body>
-								</FlexBox>
-							</FlexBox>
-						</Form.Inner>
-					</Form>
-				</Form.Wrapper>
+				<Animation
+					render={(state) => (
+						<Form.Wrapper>
+							<Form className="__hasNoBackground">
+								<Form.Inner
+									width={"784px"}
+									minHeight={"408px"}
+									bgColor={"#383B41"}
+									style={{ boxShadow: "0 2px 10px 0 rgba(0,0,0,.2)" }}
+									animate={state.inner}
+								>
+									<FlexBox direction="row" className="__login_inner">
+										<FlexBox direction="column" className="__login_input_area">
+											<Form.Header>Chào mừng trở lại!</Form.Header>
+											<Form.Body>Rất vui mừng khi được gặp lại bạn!</Form.Body>
+											<Form.Base onSubmit={handleSubmit}>
+												<Field
+													value={values.email}
+													type="input"
+													label="Email"
+													name="email"
+													errorText={errors.email || additionalError}
+													as={Form.InputWithLabelAndError}
+												/>
+												<Field
+													value={values.password}
+													type="password"
+													label="Mật khẩu"
+													name="password"
+													errorText={errors.password}
+													as={Form.InputWithLabelAndError}
+												/>
+												<Form.Link to="#">
+													<span>Quên mật khẩu?</span>
+												</Form.Link>
+												<Form.Button type="submit" disabled={isSubmitting}>
+													Đăng nhập
+												</Form.Button>
+												<Form.Text>
+													Cần một tài khoản?
+													<Form.Link to={ROUTES.__signup}>
+														&nbsp;<span>Đăng ký</span>
+													</Form.Link>
+												</Form.Text>
+											</Form.Base>
+										</FlexBox>
+										<FlexBox direction="column" className="__login_qr_area">
+											<QRContainer />
+											<Form.Header>Đăng nhập bằng mã QR</Form.Header>
+											<Form.Body>
+												Quét bằng <span>ứng dụng di động Discord</span> đăng
+												nhập tức thì.
+											</Form.Body>
+										</FlexBox>
+									</FlexBox>
+								</Form.Inner>
+							</Form>
+						</Form.Wrapper>
+					)}
+				/>
 			)}
 		</Formik>
 	);

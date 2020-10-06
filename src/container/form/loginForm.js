@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 // -- Components --
 import { QRContainer } from "../index";
 import { Formik, Field } from "formik";

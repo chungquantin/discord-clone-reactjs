@@ -5,6 +5,8 @@ import { LoginPage, SignUpPage, DefaultChannelPage } from "./pages";
 // GraphQL & Apollo Client
 import { ApolloProvider } from "@apollo/client";
 import ApolloClientServer from "./server/apollo";
+// Animation & Transition
+import { CSSTransition, TransitionGroup } from "react-transition-group";
 
 const client = ApolloClientServer();
 

@@ -2,7 +2,7 @@ import React from "react";
 import { Form } from "../components";
 
 export default (SelectComponent) => {
-	return (min, max, format) => {
+	return (min, max, format, placeholder) => {
 		const options = [];
 		for (let i = min; i <= max; i++) {
 			options.push(
@@ -11,6 +11,7 @@ export default (SelectComponent) => {
 		}
 		const hocComponent = ({ children, ...props }) => (
 			<SelectComponent {...props}>
+				<Form.Option value={null} text={placeholder} disabled selected />
 				{children}
 				{options}
 			</SelectComponent>

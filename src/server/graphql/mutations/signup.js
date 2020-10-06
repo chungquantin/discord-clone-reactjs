@@ -8,7 +8,7 @@ export default gql`
 		$username: String!
 		$birthday: Birthday!
 	) {
-		signIn(
+		signUp(
 			emailAddress: $email
 			password: $password
 			confirmPassword: $confirmPassword

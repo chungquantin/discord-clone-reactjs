@@ -1,6 +1,7 @@
 import React from "react";
 import * as Style from "./styles/Form";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
+import { capitalizeFirstLetter } from "../../utils/string";
 
 function Form({ children, ...restProps }) {
 	return <Style.Container {...restProps}>{children}</Style.Container>;
@@ -91,6 +92,29 @@ Form.Text = function FormText({ children, ...restProps }) {
 
 Form.Error = function FormText({ children, ...restProps }) {
 	return <Style.ErrorText>{children}</Style.ErrorText>;
+};
+
+Form.InputWithLabelAndError = function FormInputWithLabelAndError({
+	errorText,
+	label,
+	type,
+	...props
+}) {
+	return (
+		<>
+			<Form.Label className={!!errorText && "__label_error"}>
+				{label}
+				{!!errorText && (
+					<Form.Error>- {capitalizeFirstLetter(errorText)}</Form.Error>
+				)}
+			</Form.Label>
+			<Form.Input
+				type={type}
+				{...props}
+				className={!!errorText && "__input_error"}
+			/>
+		</>
+	);
 };
 
 export default Form;

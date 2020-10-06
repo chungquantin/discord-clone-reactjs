@@ -1,11 +1,26 @@
-function validateEmail(email) {
-	const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-	return re.test(String(email).toLowerCase());
-}
+import * as Yup from "yup";
 
-function validateUsername(username) {
-	const re = /^[a-zA-Z\-]+$/;
-	return re.test(String(username).toLowerCase());
-}
+const validRuleSet = {
+	email: Yup.string()
+		.required("Ô này là trường bắt buộc")
+		.email("Địa chỉ email không hợp lệ")
+		.min(4, "Địa chỉ email phải dài hơn 4 kí tự"),
+	password: Yup.string()
+		.required("Ô này là trường bắt buộc")
+		.min(4, "Mật khẩu phải dài hơn 4 kí tự"),
+	username: Yup.string()
+		.required("Ô này là trường bắt buộc")
+		.matches(/^[a-zA-Z\-]+$/, "Tên đăng nhập không được chứa ký tự đặc biệt")
+		.min(4, "Tên đăng nhập phải dài hơn 4 kí tự"),
+	confirmPassword: Yup.string().oneOf(
+		[Yup.ref("password"), null],
+		"Xác nhận mật khẩu không tương thích"
+	),
+	birthday: Yup.object({
+		day: Yup.number(),
+		month: Yup.number(),
+		year: Yup.number(),
+	}),
+};
 
-export { validateEmail, validateUsername };
+export { validRuleSet };

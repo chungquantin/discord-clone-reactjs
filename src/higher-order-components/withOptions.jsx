@@ -12,7 +12,6 @@ export default (SelectComponent) => {
 		const hocComponent = ({ ...props }) => (
 			<SelectComponent {...props}>
 				<Form.Option value={null} text={placeholder} disabled selected />
-
 				{options}
 			</SelectComponent>
 		);

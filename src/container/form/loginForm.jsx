@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useLocation } from "react-router-dom";
+import useBreakPoint from "../../hooks/useBreakPoint";
 // -- Components --
 import { QRContainer } from "../index";
 import { Formik, Field } from "formik";
@@ -10,6 +10,7 @@ import { useMutation } from "@apollo/client";
 import { SIGN_IN } from "../../server/graphql/mutations";
 // -- Constants --
 import * as ROUTES from "../../constants/routes";
+import * as ASSETS from "../../constants/assets";
 // -- Validate --
 import * as yup from "yup";
 import { validRuleSet } from "../../utils/validate";
@@ -22,6 +23,8 @@ const validationSchema = yup.object({
 function LoginFormContainer({ animatedVariables, key }) {
 	const [signIn] = useMutation(SIGN_IN);
 	const [additionalError, setAdditionalErrors] = useState("");
+	const breakPoint = useBreakPoint();
+
 	return (
 		<Formik
 			validateOnChange={true}
@@ -49,7 +52,7 @@ function LoginFormContainer({ animatedVariables, key }) {
 				<Form.Wrapper>
 					<Form className="__hasNoBackground">
 						<Form.Inner
-							width={"784px"}
+							width={breakPoint > 800 ? "784px" : "fit-content"}
 							minHeight={"408px"}
 							bgColor={"#383B41"}
 							variants={animatedVariables.Inner}
@@ -61,6 +64,13 @@ function LoginFormContainer({ animatedVariables, key }) {
 						>
 							<FlexBox direction="row" className="__login_inner">
 								<FlexBox direction="column" className="__login_input_area">
+									{breakPoint < 580 && (
+										<img
+											src={ASSETS.FULL_LOGO}
+											alt="Discord Full Logo"
+											style={{ height: "30px", marginBottom: "60px" }}
+										/>
+									)}
 									<Form.Header>Chào mừng trở lại!</Form.Header>
 									<Form.Body>Rất vui mừng khi được gặp lại bạn!</Form.Body>
 									<Form.Base onSubmit={handleSubmit}>
@@ -94,14 +104,16 @@ function LoginFormContainer({ animatedVariables, key }) {
 										</Form.Text>
 									</Form.Base>
 								</FlexBox>
-								<FlexBox direction="column" className="__login_qr_area">
-									<QRContainer />
-									<Form.Header>Đăng nhập bằng mã QR</Form.Header>
-									<Form.Body>
-										Quét bằng <span>ứng dụng di động Discord</span> đăng nhập
-										tức thì.
-									</Form.Body>
-								</FlexBox>
+								{breakPoint > 800 && (
+									<FlexBox direction="column" className="__login_qr_area">
+										<QRContainer />
+										<Form.Header>Đăng nhập bằng mã QR</Form.Header>
+										<Form.Body>
+											Quét bằng <span>ứng dụng di động Discord</span> đăng nhập
+											tức thì.
+										</Form.Body>
+									</FlexBox>
+								)}
 							</FlexBox>
 						</Form.Inner>
 					</Form>

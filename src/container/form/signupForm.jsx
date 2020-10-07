@@ -1,14 +1,16 @@
 import React, { useState } from "react";
+import useBreakPoint from "../../hooks/useBreakPoint";
 import withOptions from "../../higher-order-components/withOptions";
 // -- Backend --
 import { signUpWithEmailAndPassword } from "../../server/graphql/actions";
 import { useMutation } from "@apollo/client";
 import { SIGN_UP } from "../../server/graphql/mutations";
 // -- Components --
-import { Form, FlexBox } from "../../components";
+import { Form, FlexBox, Header } from "../../components";
 import { Formik, Field } from "formik";
 // -- Constants --
-import * as ROUTES from "../..//constants/routes";
+import * as ROUTES from "../../constants/routes";
+import * as ASSETS from "../../constants/assets";
 // -- Validate --
 import * as yup from "yup";
 import { validRuleSet } from "../../utils/validate";
@@ -25,14 +27,16 @@ const __current_year__ = parseInt(new Date().getFullYear());
 function SignUpContainer({ animatedVariables }) {
 	const [additionalError, setAdditionalErrors] = useState("");
 	const [signUp] = useMutation(SIGN_UP);
+	const breakPoint = useBreakPoint();
+
 	return (
 		<Formik
 			validateOnChange={true}
 			initialValues={{
-				email: "user@email.com",
-				password: "12345",
-				confirmPassword: "12345",
-				username: "tinchung",
+				email: "",
+				password: "",
+				confirmPassword: "",
+				username: "",
 				birthday: { day: "Ngày", month: "Tháng", year: "Năm" },
 			}}
 			validationSchema={validateSchema}
@@ -62,6 +66,13 @@ function SignUpContainer({ animatedVariables }) {
 							transition="transition"
 						>
 							<Form.Base direction="column" onSubmit={handleSubmit}>
+								{breakPoint < 580 && (
+									<img
+										src={ASSETS.FULL_LOGO}
+										alt="Discord Full Logo"
+										style={{ height: "30px", marginBottom: "60px" }}
+									/>
+								)}
 								<Form.Header>Tạo tài khoản</Form.Header>
 								<Field
 									value={values.email}

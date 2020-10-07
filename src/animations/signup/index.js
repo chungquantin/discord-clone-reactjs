@@ -6,17 +6,22 @@ export default class SignUpAnimation extends React.Component {
 			open: {
 				opacity: 1,
 				marginTop: "0px",
+				scale: 1,
 			},
 			exit: {
 				opacity: 0,
-				marginTop: "-100px",
+				marginTop: "-30px",
+				scale: 1.05,
 			},
 			initial: {
 				opacity: 0,
-				marginTop: "-100px",
+				marginTop: "-50px",
+				scale: 1.05,
 			},
 			transition: {
-				duration: 0.1,
+				duration: 0.001,
+				type: "spring",
+				stiffness: 500,
 			},
 		},
 	};

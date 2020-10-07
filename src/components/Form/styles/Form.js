@@ -159,8 +159,15 @@ export const Container = styled.div`
 		.__signup_inner {
 			box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.2);
 			padding: 32px;
+			@media (max-width: 580px) {
+				max-height: 100vh;
+				height: 100%;
+				width: 100vw;
+				justify-content: center;
+			}
 			${Base} {
-				width: 416px;
+				max-width: 416px;
+				width: 100%;
 				${Header} {
 					width: fit-content;
 					margin: 0px auto;
@@ -201,10 +208,20 @@ export const Container = styled.div`
 			z-index: 1;
 			width: 100%;
 			justify-content: space-between;
+			@media (max-width: 580px) {
+				height: 100vh;
+				width: 100vw;
+				justify-content: center;
+			}
 			.__login_input_area {
+				@media (max-width: 580px) {
+					max-height: 100vh;
+					height: 100%;
+				}
 				padding-top: 10px;
 				width: 414.4px;
 				max-height: 340.6px;
+
 				${Header} {
 					color: white;
 				}

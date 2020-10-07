@@ -1,7 +1,7 @@
 import React from "react";
 import * as Style from "./styles/Header.js";
 
-function Header({ src, children, ...restProps }) {
+function Header({ children, ...restProps }) {
 	return <Style.Container {...restProps}>{children}</Style.Container>;
 }
 

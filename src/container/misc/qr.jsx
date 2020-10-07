@@ -1,5 +1,5 @@
 import React from "react";
-import { QR } from "../components/index";
+import { QR } from "../../components/index";
 
 function QRContainer() {
 	return (

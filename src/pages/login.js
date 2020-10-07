@@ -1,16 +1,12 @@
 import React from "react";
 // -- Components --
 import { AuthHeaderContainer, LoginFormContainer } from "../container";
-import { Form } from "../components";
 // -- Animations --
 import { default as LoginAnimation } from "../animations/login";
-import { useLocation } from "react-router-dom";
 
 function Login() {
-	const location = useLocation();
-
 	return (
-		<AuthHeaderContainer>
+		<AuthHeaderContainer className="__580_break">
 			<LoginAnimation
 				render={(variables) => (
 					<LoginFormContainer animatedVariables={variables} />

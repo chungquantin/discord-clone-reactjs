@@ -2,9 +2,22 @@ import React from "react";
 
 export default class LoginAnimation extends React.Component {
 	state = {
-		inner: {
-			width: "900px",
-			height: "1000px",
+		Inner: {
+			open: {
+				opacity: 1,
+				marginTop: "0px",
+			},
+			exit: {
+				opacity: 0,
+				marginTop: "-100px",
+			},
+			initial: {
+				opacity: 0,
+				marginTop: "-100px",
+			},
+			transition: {
+				duration: 0.1,
+			},
 		},
 	};
 	render() {

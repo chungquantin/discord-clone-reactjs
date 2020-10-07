@@ -22,7 +22,7 @@ const validateSchema = yup.object({
 });
 const __current_year__ = parseInt(new Date().getFullYear());
 
-function SignUpContainer() {
+function SignUpContainer({ animatedVariables }) {
 	const [additionalError, setAdditionalErrors] = useState("");
 	const [signUp] = useMutation(SIGN_UP);
 	return (
@@ -53,8 +53,13 @@ function SignUpContainer() {
 						<Form.Inner
 							width={"416px"}
 							minHeight={"600px"}
+							variants={animatedVariables.Inner}
 							bgColor={"#383B41"}
 							className="__signup_inner"
+							exit="exit"
+							initial="initial"
+							animate="open"
+							transition="transition"
 						>
 							<Form.Base direction="column" onSubmit={handleSubmit}>
 								<Form.Header>Tạo tài khoản</Form.Header>

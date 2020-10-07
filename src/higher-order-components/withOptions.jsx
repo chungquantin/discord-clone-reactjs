@@ -9,10 +9,10 @@ export default (SelectComponent) => {
 				<Form.Option key={`${format}-${i}`} value={i} text={`${format} ${i}`} />
 			);
 		}
-		const hocComponent = ({ children, ...props }) => (
+		const hocComponent = ({ ...props }) => (
 			<SelectComponent {...props}>
 				<Form.Option value={null} text={placeholder} disabled selected />
-				{children}
+
 				{options}
 			</SelectComponent>
 		);

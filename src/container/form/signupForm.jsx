@@ -6,7 +6,7 @@ import { signUpWithEmailAndPassword } from "../../server/graphql/actions";
 import { useMutation } from "@apollo/client";
 import { SIGN_UP } from "../../server/graphql/mutations";
 // -- Components --
-import { Form, FlexBox, Header } from "../../components";
+import { Form, FlexBox } from "../../components";
 import { Formik, Field } from "formik";
 // -- Constants --
 import * as ROUTES from "../../constants/routes";

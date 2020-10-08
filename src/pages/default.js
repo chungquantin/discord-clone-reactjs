@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { BirthdayFormContainer } from "../container";
+import React from "react";
+import { ServerContainer } from "../container";
 
 function DefaultChannelPage({ children, ...restProps }) {
 	/* TODO Single page multi steps React-based form 
@@ -7,7 +7,7 @@ function DefaultChannelPage({ children, ...restProps }) {
 		2: Server customization
 		3: Server finalization
 	*/
-	return <></>;
+	return <ServerContainer />;
 }
 
 export default DefaultChannelPage;

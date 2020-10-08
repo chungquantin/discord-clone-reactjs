@@ -10,7 +10,7 @@ const validRuleSet = {
 		.min(4, "Mật khẩu phải dài hơn 4 kí tự"),
 	username: Yup.string()
 		.required("Ô này là trường bắt buộc")
-		.matches(/^[a-zA-Z\-]+$/, "Tên đăng nhập không được chứa ký tự đặc biệt")
+		.matches(/^[a-zA-Z]+$/, "Tên đăng nhập không được chứa ký tự đặc biệt")
 		.min(4, "Tên đăng nhập phải dài hơn 4 kí tự"),
 	confirmPassword: Yup.string().oneOf(
 		[Yup.ref("password"), null],

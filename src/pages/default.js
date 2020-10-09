@@ -1,5 +1,6 @@
-import React from "react";
-import { ServerContainer } from "../container";
+import React, { Fragment } from "react";
+import { ServerContainer, SideBarContainer } from "../container";
+import { FlexBox } from "../components";
 
 function DefaultChannelPage({ children, ...restProps }) {
 	/* TODO Single page multi steps React-based form 
@@ -7,7 +8,12 @@ function DefaultChannelPage({ children, ...restProps }) {
 		2: Server customization
 		3: Server finalization
 	*/
-	return <ServerContainer />;
+	return (
+		<FlexBox justify="flex-start">
+			<ServerContainer />
+			<SideBarContainer />
+		</FlexBox>
+	);
 }
 
 export default DefaultChannelPage;

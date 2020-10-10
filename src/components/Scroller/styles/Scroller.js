@@ -7,7 +7,6 @@ export const Container = styled.div`
 	width: fit-content;
 	height: 100vh;
 	background-color: #202225;
-	padding-top: 12px;
 `;
 
 export const Badge = styled(FlexBox)`

@@ -24,5 +24,8 @@ SideBar.Panel = function SideBarPanel({ children, ...restProps }) {
 SideBar.Content = function SideBarContent({ children, ...restProps }) {
 	return <Style.Content {...restProps}>{children}</Style.Content>;
 };
+SideBar.Inner = function SideBarInner({ children, ...restProps }) {
+	return <Style.Inner {...restProps}>{children}</Style.Inner>;
+};
 
 export default SideBar;

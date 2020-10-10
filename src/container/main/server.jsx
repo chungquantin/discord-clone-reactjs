@@ -11,7 +11,7 @@ function ServerContainer() {
 	return (
 		<Scroller>
 			<Scroller.Section>
-				<Scroller.Item>
+				<Scroller.Item style={{ paddingTop: "12px" }}>
 					<Scroller.Bubble>
 						<Scroller.Picture
 							src={ASSETS.NO_BG_LOGO}

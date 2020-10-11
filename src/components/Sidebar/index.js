@@ -24,8 +24,17 @@ SideBar.Panel = function SideBarPanel({ children, ...restProps }) {
 SideBar.Content = function SideBarContent({ children, ...restProps }) {
 	return <Style.Content {...restProps}>{children}</Style.Content>;
 };
+
 SideBar.Inner = function SideBarInner({ children, ...restProps }) {
 	return <Style.Inner {...restProps}>{children}</Style.Inner>;
+};
+
+SideBar.Icon = function SideBarIcon({ icon, ...restProps }) {
+	return <Style.Icon icon={icon} {...restProps} />;
+};
+
+SideBar.Avatar = function SideBarAvatar({ src, status, ...restProps }) {
+	return <Style.Avatar src={src} status={status} {...restProps} />;
 };
 
 export default SideBar;

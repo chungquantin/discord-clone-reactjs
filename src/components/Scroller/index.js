@@ -1,6 +1,6 @@
 import React from "react";
 import * as Style from "./styles/Scroller";
-
+import { Tooltip } from "../index";
 function Scroller({ children, ...restProps }) {
 	return (
 		<Style.Container {...restProps}>
@@ -13,8 +13,20 @@ Scroller.Item = function ScrollerItem({ children, ...restProps }) {
 	return <Style.Item {...restProps}>{children}</Style.Item>;
 };
 
-Scroller.Bubble = function ScrollerBubble({ children, ...restProps }) {
-	return <Style.Bubble {...restProps}>{children}</Style.Bubble>;
+Scroller.Bubble = function ScrollerBubble({
+	tooltip,
+	dataFor,
+	children,
+	...restProps
+}) {
+	return (
+		<Style.Bubble data-tip data-for={dataFor} {...restProps}>
+			{children}
+			<Tooltip effect="solid" id={dataFor} place="right">
+				{tooltip}
+			</Tooltip>
+		</Style.Bubble>
+	);
 };
 
 Scroller.Picture = function ScrollerPicture({

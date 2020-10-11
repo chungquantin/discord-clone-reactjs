@@ -1,6 +1,7 @@
 import React, { Fragment } from "react";
 import { ServerContainer, SideBarContainer } from "../container";
 import { FlexBox } from "../components";
+import MainAnimation from "../animations";
 
 function DefaultChannelPage({ children, ...restProps }) {
 	/* TODO Single page multi steps React-based form 
@@ -9,10 +10,14 @@ function DefaultChannelPage({ children, ...restProps }) {
 		3: Server finalization
 	*/
 	return (
-		<FlexBox justify="flex-start">
-			<ServerContainer />
-			<SideBarContainer />
-		</FlexBox>
+		<MainAnimation
+			render={(main) => (
+				<FlexBox justify="flex-start">
+					<ServerContainer mainAnimation={main} />
+					<SideBarContainer mainAnimation={main} />
+				</FlexBox>
+			)}
+		/>
 	);
 }
 

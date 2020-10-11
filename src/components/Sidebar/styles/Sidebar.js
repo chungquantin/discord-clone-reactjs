@@ -82,15 +82,25 @@ export const Header = styled(FlexBox)`
 export const Panel = styled.div``;
 
 export const Content = styled.h4`
-	color: white;
-	font-weight: 500;
+	color: #8e9297;
+	font-weight: 600;
 	width: 164px;
+	font-size: 15px;
 `;
 
-export const Avatar = styled.img``;
+export const Avatar = styled(FlexBox)`
+	height: 32px;
+	width: 32px;
+	overflow: hidden;
+	border-radius: 50px;
+	margin-right: 14px;
+	img {
+		height: 100%;
+	}
+`;
 
 export const Icon = styled(FontAwesomeIcon)`
 	color: white;
 	font-size: 20px;
-	margin-right: 12px;
+	margin-right: 14px;
 `;

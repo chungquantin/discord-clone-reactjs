@@ -34,7 +34,11 @@ SideBar.Icon = function SideBarIcon({ icon, ...restProps }) {
 };
 
 SideBar.Avatar = function SideBarAvatar({ src, status, ...restProps }) {
-	return <Style.Avatar src={src} status={status} {...restProps} />;
+	return (
+		<Style.Avatar status={status} {...restProps}>
+			<img src={src} />
+		</Style.Avatar>
+	);
 };
 
 export default SideBar;

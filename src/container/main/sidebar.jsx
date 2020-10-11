@@ -1,6 +1,7 @@
 import React from "react";
 import { SideBar, Tooltip } from "../../components";
 import { faUserFriends } from "@fortawesome/free-solid-svg-icons";
+import * as ASSETS from "../../constants/assets";
 
 function SideBarContainer({ mainAnimation }) {
 	return (
@@ -21,7 +22,11 @@ function SideBarContainer({ mainAnimation }) {
 					</button>
 				</SideBar.Header>
 				<SideBar.Option>
-					<SideBar.Avatar status={true} src={""} />
+					<SideBar.Avatar status={true} src={ASSETS.TEST_AVATAR} />
+					<SideBar.Content>Unknown</SideBar.Content>
+				</SideBar.Option>
+				<SideBar.Option>
+					<SideBar.Avatar status={true} src={ASSETS.TEST_AVATAR_2} />
 					<SideBar.Content>Unknown</SideBar.Content>
 				</SideBar.Option>
 			</SideBar.Inner>

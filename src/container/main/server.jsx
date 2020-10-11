@@ -1,5 +1,5 @@
 import React from "react";
-import { Scroller, Tooltip } from "../../components";
+import { Scroller } from "../../components";
 import * as ASSETS from "../../constants/assets";
 import {
 	faCompass,

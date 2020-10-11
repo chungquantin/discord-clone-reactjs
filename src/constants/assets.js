@@ -8,3 +8,6 @@ export const NO_BG_LOGO = `${src}logo/logo_nobg.png`;
 
 export const QR_CODE = `${src}qr/code.png`;
 export const QR_DISCORD = `${src}qr/discord.png`;
+
+export const TEST_AVATAR = `${src}avatars/test.png`;
+export const TEST_AVATAR_2 = `${src}avatars/test2.jpg`;

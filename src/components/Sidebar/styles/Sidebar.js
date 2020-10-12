@@ -34,20 +34,33 @@ export const SearchBar = styled.button`
 	cursor: pointer;
 `;
 
+export const Content = styled.h4`
+	color: #8e9297;
+	font-weight: 600;
+	width: 164px;
+	font-size: 15px;
+`;
+
 export const Option = styled(FlexBox)`
 	height: 42px;
 	width: 208px;
-	padding: 0px 8px;
+	padding: 1px 8px;
 	border-radius: 4px;
 	cursor: pointer;
 	&.__selected {
 		background-color: #393c42;
+		${Content} {
+			color: #dcddde;
+		}
 		&:hover {
 			background-color: #393c42;
 		}
 	}
 	&:hover {
 		background-color: #33363c;
+		${Content} {
+			color: #dcddde;
+		}
 	}
 `;
 
@@ -56,7 +69,7 @@ export const Header = styled(FlexBox)`
 	height: 18px;
 	width: 100%;
 	justify-content: space-between;
-	padding: 0px 10px;
+	padding: 0px 3px 0px 10px;
 	margin-top: 18px;
 	margin-bottom: 8px;
 	&:hover {
@@ -81,13 +94,6 @@ export const Header = styled(FlexBox)`
 
 export const Panel = styled.div``;
 
-export const Content = styled.h4`
-	color: #8e9297;
-	font-weight: 600;
-	width: 164px;
-	font-size: 15px;
-`;
-
 export const Avatar = styled(FlexBox)`
 	height: 32px;
 	width: 32px;
@@ -103,4 +109,15 @@ export const Icon = styled(FontAwesomeIcon)`
 	color: white;
 	font-size: 20px;
 	margin-right: 14px;
+`;
+
+export const Status = styled.img`
+	position: absolute;
+	width: 13px;
+	right: 12px;
+	bottom: -1px;
+`;
+
+export const Wrapper = styled.div`
+	position: relative;
 `;

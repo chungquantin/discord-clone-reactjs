@@ -22,11 +22,19 @@ function SideBarContainer({ mainAnimation }) {
 					</button>
 				</SideBar.Header>
 				<SideBar.Option>
-					<SideBar.Avatar status={true} src={ASSETS.TEST_AVATAR} />
+					<SideBar.Avatar status={false} src={ASSETS.TEST_AVATAR} />
 					<SideBar.Content>Unknown</SideBar.Content>
 				</SideBar.Option>
 				<SideBar.Option>
 					<SideBar.Avatar status={true} src={ASSETS.TEST_AVATAR_2} />
+					<SideBar.Content>Unknown</SideBar.Content>
+				</SideBar.Option>
+				<SideBar.Option>
+					<SideBar.Avatar status={false} />
+					<SideBar.Content>Unknown</SideBar.Content>
+				</SideBar.Option>
+				<SideBar.Option>
+					<SideBar.Avatar status={true} />
 					<SideBar.Content>Unknown</SideBar.Content>
 				</SideBar.Option>
 			</SideBar.Inner>

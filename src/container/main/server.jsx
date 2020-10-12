@@ -1,5 +1,5 @@
 import React from "react";
-import { Scroller } from "../../components";
+import { Scroller, BubbleWithTooltip } from "../../components";
 import * as ASSETS from "../../constants/assets";
 import {
 	faCompass,
@@ -12,47 +12,47 @@ function ServerContainer() {
 		<Scroller>
 			<Scroller.Section>
 				<Scroller.Item style={{ paddingTop: "12px" }}>
-					<Scroller.Bubble tooltip="Home" dataFor="tt-bb-home">
+					<BubbleWithTooltip tooltip="Home" dataFor="tt-bb-home">
 						<Scroller.Picture
 							src={ASSETS.NO_BG_LOGO}
 							alt="Default"
 							width="28px"
 						/>
 						<Scroller.Badge value={37} />
-					</Scroller.Bubble>
+					</BubbleWithTooltip>
 				</Scroller.Item>
 			</Scroller.Section>
 			<Scroller.Separator />
 			<Scroller.Section direction="column">
 				<Scroller.Item>
-					<Scroller.Bubble
+					<BubbleWithTooltip
 						tooltip="Add a Server"
 						dataFor="tt-bb-add"
 						className="__func_item"
 					>
 						<Scroller.Icon icon={faPlus} />
-					</Scroller.Bubble>
+					</BubbleWithTooltip>
 				</Scroller.Item>
 				<Scroller.Item>
-					<Scroller.Bubble
+					<BubbleWithTooltip
 						tooltip="Explore Public Servers"
 						dataFor="tt-bb-servers"
 						className="__func_item"
 					>
 						<Scroller.Icon icon={faCompass} />
-					</Scroller.Bubble>
+					</BubbleWithTooltip>
 				</Scroller.Item>
 			</Scroller.Section>
 			<Scroller.Separator />
 			<Scroller.Section>
 				<Scroller.Item>
-					<Scroller.Bubble
+					<BubbleWithTooltip
 						tooltip="Download Apps"
 						dataFor="tt-bb-download"
 						className="__func_item"
 					>
 						<Scroller.Icon icon={faDownload} />
-					</Scroller.Bubble>
+					</BubbleWithTooltip>
 				</Scroller.Item>
 			</Scroller.Section>
 		</Scroller>

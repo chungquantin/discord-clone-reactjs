@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import useBreakPoint from "../../hooks/useBreakPoint";
-import withOptions from "../../higher-order-components/withOptions";
+import withOptions from "../../helpers/withOptions";
 // -- Backend --
-import { signUpWithEmailAndPassword } from "../../server/graphql/actions";
+import { signUpWithEmailAndPassword } from "../../core/graphql/actions";
 import { useMutation } from "@apollo/client";
-import { SIGN_UP } from "../../server/graphql/mutations";
+import { SIGN_UP } from "../../core/graphql/mutations";
 // -- Components --
 import { Form, FlexBox } from "../../components";
 import { Formik, Field } from "formik";

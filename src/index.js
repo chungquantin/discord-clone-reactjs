@@ -5,7 +5,7 @@ import App from "./App";
 import { GlobalStyles } from "./global-styles";
 // -- GraphQL & Apollo Client --
 import { ApolloProvider } from "@apollo/client";
-import ApolloClientServer from "./server/apollo";
+import ApolloClientServer from "./core/apollo";
 
 const client = ApolloClientServer();
 

@@ -1,5 +1,7 @@
 import React from "react";
 import * as Style from "./styles/Sidebar";
+import * as ASSETS from "../../constants/assets";
+import StatusWithTooltip from "./custom/StatusWithTooltip";
 
 function SideBar({ children, ...restProps }) {
 	return <Style.Container {...restProps}>{children}</Style.Container>;
@@ -33,11 +35,23 @@ SideBar.Icon = function SideBarIcon({ icon, ...restProps }) {
 	return <Style.Icon icon={icon} {...restProps} />;
 };
 
-SideBar.Avatar = function SideBarAvatar({ src, status, ...restProps }) {
+SideBar.Avatar = function SideBarAvatar({ src, alt, status, ...restProps }) {
+	const DEFAULT_AVATAR =
+		Math.floor(Math.random() * 2) + 1 === 1
+			? ASSETS.DEFAULT_AVATAR_1
+			: ASSETS.DEFAULT_AVATAR_2;
+
 	return (
-		<Style.Avatar status={status} {...restProps}>
-			<img src={src} />
-		</Style.Avatar>
+		<Style.Wrapper>
+			<Style.Avatar status={status} {...restProps}>
+				{src ? (
+					<img src={src} alt={alt} />
+				) : (
+					<img src={DEFAULT_AVATAR} alt="Default Avatar" />
+				)}
+			</Style.Avatar>
+			<StatusWithTooltip status={status} src={src} />
+		</Style.Wrapper>
 	);
 };
 

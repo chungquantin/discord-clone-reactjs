@@ -2,7 +2,7 @@ import React from "react";
 // -- Components --
 import { Form, FlexBox } from "../components";
 import { Formik, Field } from "formik";
-import withOptions from "../higher-order-components/withOptions";
+import withOptions from "../helpers/withOptions";
 // -- Validate --
 import * as Yup from "yup";
 import { validRuleSet } from "../utils/validate";

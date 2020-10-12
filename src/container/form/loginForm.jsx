@@ -5,9 +5,9 @@ import { QRContainer } from "../index";
 import { Formik, Field } from "formik";
 import { Form, FlexBox } from "../../components";
 // -- Backend --
-import { signInWithEmailAndPassword } from "../../server/graphql/actions";
+import { signInWithEmailAndPassword } from "../../core/graphql/actions";
 import { useMutation } from "@apollo/client";
-import { SIGN_IN } from "../../server/graphql/mutations";
+import { SIGN_IN } from "../../core/graphql/mutations";
 // -- Constants --
 import * as ROUTES from "../../constants/routes";
 import * as ASSETS from "../../constants/assets";

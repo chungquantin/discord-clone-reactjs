@@ -46,6 +46,7 @@ export const Option = styled(FlexBox)`
 	width: 208px;
 	padding: 1px 8px;
 	border-radius: 4px;
+	overflow: hidden;
 	cursor: pointer;
 	&.__selected {
 		background-color: #393c42;
@@ -58,9 +59,18 @@ export const Option = styled(FlexBox)`
 	}
 	&:hover {
 		background-color: #33363c;
+		.__close_button {
+			display: block;
+		}
 		${Content} {
 			color: #dcddde;
 		}
+	}
+	.__close_button {
+		display: none;
+		color: #d9dadb;
+		font-size: smaller;
+		font-weight: normal;
 	}
 `;
 
@@ -92,8 +102,6 @@ export const Header = styled(FlexBox)`
 	}
 `;
 
-export const Panel = styled.div``;
-
 export const Avatar = styled(FlexBox)`
 	height: 32px;
 	width: 32px;
@@ -120,4 +128,9 @@ export const Status = styled.img`
 
 export const Wrapper = styled.div`
 	position: relative;
+`;
+
+export const Panel = styled.div`
+	position: absolute;
+	bottom: 0;
 `;

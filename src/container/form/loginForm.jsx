@@ -29,8 +29,8 @@ function LoginFormContainer({ animatedVariables, key }) {
 		<Formik
 			validateOnChange={true}
 			initialValues={{
-				email: "user@email.com",
-				password: "123456",
+				email: "",
+				password: "",
 			}}
 			onSubmit={async (data, { setSubmitting }) => {
 				setSubmitting(true);

@@ -1,6 +1,8 @@
 import React from "react";
 import * as Style from "./styles/Sidebar";
 import * as ASSETS from "../../constants/assets";
+import { faTimes } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import StatusWithTooltip from "./custom/StatusWithTooltip";
 
 function SideBar({ children, ...restProps }) {
@@ -11,10 +13,6 @@ SideBar.SearchBar = function SideBarSearchBar({ children, ...restProps }) {
 	return <Style.SearchBar {...restProps}>{children}</Style.SearchBar>;
 };
 
-SideBar.Option = function SideBarOption({ children, ...restProps }) {
-	return <Style.Option {...restProps}>{children}</Style.Option>;
-};
-
 SideBar.Header = function SideBarHeader({ children, ...restProps }) {
 	return <Style.Header {...restProps}>{children}</Style.Header>;
 };
@@ -23,8 +21,24 @@ SideBar.Panel = function SideBarPanel({ children, ...restProps }) {
 	return <Style.Panel {...restProps}>{children}</Style.Panel>;
 };
 
-SideBar.Content = function SideBarContent({ children, ...restProps }) {
-	return <Style.Content {...restProps}>{children}</Style.Content>;
+SideBar.Option = function SideBarOption({ children, type, ...restProps }) {
+	return (
+		<Style.Option {...restProps}>
+			{children}
+			{type === "closable" && (
+				<FontAwesomeIcon icon={faTimes} className="__close_button" />
+			)}
+		</Style.Option>
+	);
+};
+
+SideBar.Content = function SideBarContent({ text, children, ...restProps }) {
+	const limit = 16;
+	return (
+		<Style.Content {...restProps}>
+			{text.length > limit ? `${text.substring(0, limit)}...` : text}
+		</Style.Content>
+	);
 };
 
 SideBar.Inner = function SideBarInner({ children, ...restProps }) {

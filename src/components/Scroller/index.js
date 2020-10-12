@@ -12,8 +12,12 @@ Scroller.Item = function ScrollerItem({ children, ...restProps }) {
 	return <Style.Item {...restProps}>{children}</Style.Item>;
 };
 
-Scroller.Bubble = function ScrollerBubble({ children, ...restProps }) {
-	return <Style.Bubble {...restProps}>{children}</Style.Bubble>;
+Scroller.Bubble = function ScrollerBubble({ to, children, ...restProps }) {
+	return (
+		<Style.Bubble to={to} {...restProps}>
+			{children}
+		</Style.Bubble>
+	);
 };
 
 Scroller.Picture = function ScrollerPicture({

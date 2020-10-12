@@ -1,18 +1,23 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useReducer, useEffect } from "react";
 import * as Style from "../styles/Sidebar";
-import * as ASSETS from "../../../constants/assets";
 import { Tooltip } from "../../index";
+import statusReducer from "../../../helpers/statusReducer";
 
-function StatusWithTooltip({ status, src }) {
+const initialState = {
+	source: "",
+	tooltip: "",
+};
+
+function StatusWithTooltip({ status, id }) {
+	const [state, dispatch] = useReducer(statusReducer, initialState);
+	useEffect(() => dispatch({ type: status }), [status]);
+	console.log(state);
+
 	return (
 		<Fragment>
-			<Style.Status
-				src={status ? ASSETS.STATUS_ONLINE : ASSETS.STATUS_OFFLINE}
-				data-tip
-				data-for={`__status_${src}`}
-			/>
-			<Tooltip id={`__status_${src}`} effect="solid" place="top">
-				{status === true ? "Online" : "Offline"}
+			<Style.Status src={state.source} data-tip data-for={`__status_${id}`} />
+			<Tooltip id={`__status_${id}`} effect="solid" place="top">
+				{state.tooltip}
 			</Tooltip>
 		</Fragment>
 	);

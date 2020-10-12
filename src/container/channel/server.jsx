@@ -12,7 +12,7 @@ function ServerContainer() {
 		<Scroller>
 			<Scroller.Section>
 				<Scroller.Item style={{ paddingTop: "12px" }}>
-					<BubbleWithTooltip tooltip="Home" dataFor="tt-bb-home">
+					<BubbleWithTooltip tooltip="Home" dataFor="tt-bb-home" to="#">
 						<Scroller.Picture
 							src={ASSETS.NO_BG_LOGO}
 							alt="Default"
@@ -29,6 +29,7 @@ function ServerContainer() {
 						tooltip="Add a Server"
 						dataFor="tt-bb-add"
 						className="__func_item"
+						to="#"
 					>
 						<Scroller.Icon icon={faPlus} />
 					</BubbleWithTooltip>
@@ -38,6 +39,7 @@ function ServerContainer() {
 						tooltip="Explore Public Servers"
 						dataFor="tt-bb-servers"
 						className="__func_item"
+						to="#"
 					>
 						<Scroller.Icon icon={faCompass} />
 					</BubbleWithTooltip>
@@ -50,6 +52,7 @@ function ServerContainer() {
 						tooltip="Download Apps"
 						dataFor="tt-bb-download"
 						className="__func_item"
+						to="#"
 					>
 						<Scroller.Icon icon={faDownload} />
 					</BubbleWithTooltip>

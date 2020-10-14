@@ -6,7 +6,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 export const Container = styled.div`
 	width: fit-content;
 	height: 100vh;
+	position: relative;
 	background-color: #202225;
+	overflow: hidden auto;
 `;
 
 export const Badge = styled(FlexBox)`
@@ -34,7 +36,9 @@ export const Separator = styled.div`
 	margin-bottom: 8px;
 `;
 
-export const Section = styled(FlexBox)``;
+export const Section = styled(FlexBox)`
+	height: 100%;
+`;
 
 export const Picture = styled.img`
 	width: ${({ width }) => width};

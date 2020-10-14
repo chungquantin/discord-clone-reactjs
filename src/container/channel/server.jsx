@@ -46,7 +46,7 @@ function ServerContainer() {
 				</Scroller.Item>
 			</Scroller.Section>
 			<Scroller.Separator />
-			<Scroller.Section>
+			<Scroller.Section direction="column">
 				<Scroller.Item>
 					<BubbleWithTooltip
 						tooltip="Download Apps"

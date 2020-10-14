@@ -1,5 +1,5 @@
 import React from "react";
-import { ServerContainer, SideBarContainer } from "../container";
+import { ServerContainer, SideBarContainer, TabContainer } from "../container";
 import { FlexBox } from "../components";
 import MainAnimation from "../animations";
 
@@ -12,9 +12,10 @@ function DefaultChannelPage({ children, ...restProps }) {
 	return (
 		<MainAnimation
 			render={(main) => (
-				<FlexBox justify="flex-start">
+				<FlexBox justify="flex-start" style={{ minHeight: "100vh" }}>
 					<ServerContainer mainAnimation={main} />
 					<SideBarContainer mainAnimation={main} />
+					<TabContainer mainAnimation={main} />
 				</FlexBox>
 			)}
 		/>

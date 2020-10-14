@@ -11,10 +11,13 @@ export const Container = styled.div`
 	height: 100vh;
 	width: 240px;
 	background-color: #2f3136;
-	${Inner}:last-child {
+	position: relative;
+	overflow: hidden auto;
+	${Inner}:nth-child(2) {
 		flex-direction: column;
 		height: fit-content;
 		padding: 8px;
+		overflow: hidden auto;
 	}
 	${Inner}:first-child {
 		box-shadow: 0 1px 0 rgba(4, 4, 5, 0.2), 0 1.5px 0 rgba(6, 6, 7, 0.05),
@@ -39,6 +42,10 @@ export const Content = styled.h4`
 	font-weight: 600;
 	width: 164px;
 	font-size: 15px;
+	&.__monitor {
+		font-weight: 700;
+		color: white;
+	}
 `;
 
 export const Option = styled(FlexBox)`
@@ -60,17 +67,28 @@ export const Option = styled(FlexBox)`
 	&:hover {
 		background-color: #33363c;
 		.__close_button {
-			display: block;
+			opacity: 1;
 		}
 		${Content} {
 			color: #dcddde;
 		}
 	}
 	.__close_button {
-		display: none;
+		position: absolute;
+		right: 0px;
+		opacity: 0;
 		color: #d9dadb;
+		margin-right: 19px;
 		font-size: smaller;
 		font-weight: normal;
+	}
+	&.__personal {
+		&:hover {
+			background-color: unset;
+			${Content} {
+				color: #8e9297;
+			}
+		}
 	}
 `;
 
@@ -130,7 +148,27 @@ export const Wrapper = styled.div`
 	position: relative;
 `;
 
-export const Panel = styled.div`
-	position: absolute;
+export const SubContent = styled(Content)`
+	font-size: 11px;
+`;
+
+export const Panel = styled(FlexBox)`
+	position: fixed;
+	width: 240px;
 	bottom: 0;
+	background-color: #292b2f;
+	height: 52px;
+`;
+
+export const MonitorSection = styled.section`
+	position: absolute;
+	right: 0px;
+	${Icon} {
+		color: #b9bbbe;
+		font-size: 15px;
+		cursor: pointer;
+		&.__muted {
+			color: #fd5959;
+		}
+	}
 `;

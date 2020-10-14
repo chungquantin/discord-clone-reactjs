@@ -1,16 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import { SideBar, Tooltip } from "../../components";
 import { faUserFriends } from "@fortawesome/free-solid-svg-icons";
 import * as ASSETS from "../../constants/assets";
+import UserBubble from "../../components/Sidebar/custom/UserBubble.js";
+import {
+	faHeadphones,
+	faMicrophone,
+	faCog,
+} from "@fortawesome/free-solid-svg-icons";
 
 function SideBarContainer({ mainAnimation }) {
+	const [micOn, setMic] = useState(true);
+	const [headphoneOn, setHeadPhone] = useState(true);
+
 	return (
 		<SideBar>
 			{/* React.createPortals for searchBar */}
 			<SideBar.Inner>
 				<SideBar.SearchBar>Find or start a conversation</SideBar.SearchBar>
 			</SideBar.Inner>
-			<SideBar.Inner>
+			<SideBar.Inner direction="column">
 				<SideBar.Option className="__selected">
 					<SideBar.Icon icon={faUserFriends} />
 					<SideBar.Content text="Friends" />
@@ -21,37 +30,72 @@ function SideBarContainer({ mainAnimation }) {
 						+ <Tooltip id="tt-add-dm" effect="solid" />
 					</button>
 				</SideBar.Header>
-				<SideBar.Option type="closable">
-					<SideBar.Avatar
-						status={"online"}
-						src={ASSETS.TEST_AVATAR}
-						id={"#1"}
-					/>
-					<SideBar.Content text="LeDat" className="__friend_option" />
-				</SideBar.Option>
-				<SideBar.Option type="closable">
-					<SideBar.Avatar
-						status={"offline"}
-						src={ASSETS.TEST_AVATAR_2}
-						id={"#2"}
-					/>
-					<SideBar.Content text="ĐuổiEmỞTrênĐổi" />
-				</SideBar.Option>
-				<SideBar.Option type="closable">
-					<SideBar.Avatar status={"idle"} id={"#3"} />
-					<SideBar.Content text="reyna1123" />
-				</SideBar.Option>
-				<SideBar.Option type="closable">
-					<SideBar.Avatar status={"disturb"} id={"#4"} />
-					<SideBar.Content text="thanhhhhhhhhhhhhhhhhhhhhhhhhhhh" />
-				</SideBar.Option>
-				<SideBar.Panel>
-					<SideBar.Option type="monitor">
-						<SideBar.Avatar status={"online"} id={"#5"} />
-						<SideBar.Content text="ĐuổiEmỞTrênĐổi" />
-					</SideBar.Option>
-				</SideBar.Panel>
+				<UserBubble
+					status="online"
+					type="closable"
+					id="#1"
+					text="LeDat"
+					subText="Minecraft"
+					src={ASSETS.TEST_AVATAR}
+				/>
+				<UserBubble
+					status="offline"
+					type="closable"
+					id="#2"
+					text="reyna1123"
+					subText="League Of Legends"
+					src={null}
+				/>
+				<UserBubble
+					status="offline"
+					type="closable"
+					id="#3"
+					text="thanhhhhhhhhhhhhhhhhhhhhhhhhhhh"
+					subText={null}
+					src={null}
+				/>
 			</SideBar.Inner>
+			<SideBar.Panel justify="flex-start">
+				<UserBubble
+					className="__personal"
+					status="online"
+					type="monitor"
+					id="#5"
+					text="ĐuổiEmỞTrênĐổi"
+					subText={"Minecraft"}
+					src={null}
+				/>
+				<SideBar.MonitorSection>
+					<SideBar.Icon
+						icon={faMicrophone}
+						className={!micOn ? "__muted" : null}
+						onClick={() => {
+							setMic((state) => !state);
+						}}
+						data-tip
+						data-for="mic-tt"
+					/>
+					<Tooltip id="mic-tt" effect="solid">
+						{micOn ? "Mute" : "Unmute"}
+					</Tooltip>
+					<SideBar.Icon
+						icon={faHeadphones}
+						className={!headphoneOn ? "__muted" : null}
+						onClick={() => {
+							setHeadPhone((state) => !state);
+						}}
+						data-tip
+						data-for="headphone-tt"
+					/>
+					<Tooltip id="headphone-tt" effect="solid">
+						{headphoneOn ? "Deafen" : "Undeafen"}
+					</Tooltip>
+					<SideBar.Icon data-tip data-for="cog-tt" icon={faCog} />
+					<Tooltip id="cog-tt" effect="solid">
+						Setting
+					</Tooltip>
+				</SideBar.MonitorSection>
+			</SideBar.Panel>
 		</SideBar>
 	);
 }

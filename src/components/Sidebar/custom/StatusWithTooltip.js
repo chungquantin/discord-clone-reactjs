@@ -11,8 +11,6 @@ const initialState = {
 function StatusWithTooltip({ status, id }) {
 	const [state, dispatch] = useReducer(statusReducer, initialState);
 	useEffect(() => dispatch({ type: status }), [status]);
-	console.log(state);
-
 	return (
 		<Fragment>
 			<Style.Status src={state.source} data-tip data-for={`__status_${id}`} />

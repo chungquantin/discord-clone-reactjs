@@ -103,8 +103,12 @@ export const Text = styled.p`
 	line-height: 18px;
 `;
 
-export const DynamicSection = styled(FlexBox)`
+export const Panel = styled(FlexBox)`
 	background-color: transparent;
 	width: calc(100% - 367px);
 	height: 100%;
+
+	@media (max-width: 1000px) {
+		width: 100%;
+	}
 `;

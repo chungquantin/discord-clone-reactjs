@@ -1,31 +1,22 @@
-import React, { useReducer } from "react";
+import React, { useContext } from "react";
 import TabBar from "./tabBar";
-import ActiveSection from "./activeSection";
 import { Tab } from "../../components";
-import * as ASSETS from "../../constants/assets.js";
-import jumboReducer from "../../helpers/reducers/jumboReducer";
-
-const initialState = {
-	source: "",
-	text: "",
-};
-
+import { TabContext } from "../../contexts/TabContext.js";
+import { AllPanel, PendingPanel, OnlinePanel, BlockedPanel } from "./tab/index";
+import ActiveSection from "./activeSection";
+import useBreakPoint from "../../hooks/useBreakPoint";
 function TabContainer() {
-	// const [state, dispatch] = useReducer(jumboReducer, initialState);
-	// useEffect(() => dispatch({ type: status }), [status]);
+	const { tabIndex } = useContext(TabContext);
+	const breakPoint = useBreakPoint();
 	return (
 		<Tab>
 			<TabBar />
 			<Tab.Body justify="flex-start">
-				<Tab.DynamicSection direction="column">
-					<img
-						src={ASSETS.JUMBO_ONLINE}
-						alt=""
-						style={{ marginBottom: "40px" }}
-					/>
-					<h5 className="__jumbo_text">Chả có ai chơi với Tín Quan Chung cả</h5>
-				</Tab.DynamicSection>
-				<ActiveSection />
+				{tabIndex === 1 && <OnlinePanel />}
+				{tabIndex === 2 && <AllPanel />}
+				{tabIndex === 3 && <PendingPanel />}
+				{tabIndex === 4 && <BlockedPanel />}
+				{breakPoint > 1000 && <ActiveSection />}
 			</Tab.Body>
 		</Tab>
 	);

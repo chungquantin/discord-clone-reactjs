@@ -54,8 +54,12 @@ Tab.Text = function TabText({ children, ...restProps }) {
 	return <Style.Text {...restProps}>{children}</Style.Text>;
 };
 
-Tab.DynamicSection = function TabDynamicSection({ children, ...restProps }) {
-	return <Style.DynamicSection {...restProps}>{children}</Style.DynamicSection>;
+Tab.Panel = function TabPanel({ index, children, ...restProps }) {
+	return (
+		<Style.Panel index={index} {...restProps}>
+			{children}
+		</Style.Panel>
+	);
 };
 
 export default Tab;

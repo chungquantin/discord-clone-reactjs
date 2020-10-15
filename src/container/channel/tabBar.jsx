@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Tab, FlexBox, Tooltip } from "../../components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -7,8 +7,11 @@ import {
 	faInbox,
 	faQuestionCircle,
 } from "@fortawesome/free-solid-svg-icons";
+import { TabContext } from "../../contexts/TabContext";
 
 function TabBar() {
+	const { tabIndex, setTabIndex } = useContext(TabContext);
+
 	return (
 		<Tab.Bar justify="space-between">
 			<FlexBox>
@@ -18,10 +21,30 @@ function TabBar() {
 				/>
 				<Tab.Header>Bạn bè</Tab.Header>
 				<Tab.Separator />
-				<Tab.TextButton className="__selected">Trực tuyến</Tab.TextButton>
-				<Tab.TextButton>Tất cả</Tab.TextButton>
-				<Tab.TextButton>Đang chờ xử lý</Tab.TextButton>
-				<Tab.TextButton>Đã chặn</Tab.TextButton>
+				<Tab.TextButton
+					onClick={() => setTabIndex(1)}
+					className={tabIndex === 1 ? "__selected" : null}
+				>
+					Trực tuyến
+				</Tab.TextButton>
+				<Tab.TextButton
+					onClick={() => setTabIndex(2)}
+					className={tabIndex === 2 ? "__selected" : null}
+				>
+					Tất cả
+				</Tab.TextButton>
+				<Tab.TextButton
+					onClick={() => setTabIndex(3)}
+					className={tabIndex === 3 ? "__selected" : null}
+				>
+					Đang chờ xử lý
+				</Tab.TextButton>
+				<Tab.TextButton
+					onClick={() => setTabIndex(4)}
+					className={tabIndex === 4 ? "__selected" : null}
+				>
+					Đã chặn
+				</Tab.TextButton>
 				<Tab.StyledTextButton>Thêm bạn</Tab.StyledTextButton>
 			</FlexBox>
 			<FlexBox

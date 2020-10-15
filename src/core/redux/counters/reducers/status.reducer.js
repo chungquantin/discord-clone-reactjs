@@ -7,7 +7,6 @@ const INITIAL_STATE = {
 };
 
 const reducer = (state = INITIAL_STATE, action) => {
-	console.log(action);
 	switch (action.type) {
 		case ONLINE:
 			return { source: ASSETS.STATUS_ONLINE, tooltip: "Online" };

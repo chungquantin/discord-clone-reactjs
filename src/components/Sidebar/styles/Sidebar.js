@@ -31,9 +31,9 @@ export const SearchBar = styled.button`
 	border: none;
 	background-color: #202225;
 	border-radius: 4px;
-	text-align: left;
+	text-align: center;
 	color: #72767d;
-	font-size: 13px;
+	font-size: 12px;
 	font-weight: 600;
 	cursor: pointer;
 `;

@@ -6,5 +6,4 @@ export { default as QR } from "./QR";
 export { default as Scroller } from "./Scroller";
 export { default as SideBar } from "./Sidebar";
 export { default as Tooltip } from "./Tooltip";
-// Custom Components
-export { default as BubbleWithTooltip } from "./Scroller/custom/BubbleWithToolTip";
+export { default as Tab } from "./Tab";

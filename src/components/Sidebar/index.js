@@ -3,7 +3,7 @@ import * as Style from "./styles/Sidebar";
 import * as ASSETS from "../../constants/assets";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import StatusWithTooltip from "./custom/StatusWithTooltip";
+import StatusWithTooltip from "../custom/Sidebar/StatusWithTooltip";
 
 function SideBar({ children, ...restProps }) {
 	return <Style.Container {...restProps}>{children}</Style.Container>;

@@ -9,7 +9,7 @@ export const Inner = styled(FlexBox)`
 
 export const Container = styled.div`
 	height: 100vh;
-	width: 240px;
+	min-width: 240px;
 	background-color: #2f3136;
 	position: relative;
 	overflow: hidden auto;
@@ -70,7 +70,7 @@ export const Option = styled(FlexBox)`
 			opacity: 1;
 		}
 		${Content} {
-			color: #dcddde;
+			${"" /* color: #dcddde; */}
 		}
 	}
 	.__close_button {

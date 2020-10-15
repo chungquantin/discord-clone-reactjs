@@ -1,5 +1,6 @@
 import React from "react";
-import { Scroller, BubbleWithTooltip } from "../../components";
+import { Scroller } from "../../components";
+import BubbleWithTooltip from "../../components/custom/Scroller/BubbleWithToolTip.js";
 import * as ASSETS from "../../constants/assets";
 import {
 	faCompass,

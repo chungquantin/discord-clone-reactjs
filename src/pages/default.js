@@ -14,8 +14,10 @@ function DefaultChannelPage({ children, ...restProps }) {
 			render={(main) => (
 				<FlexBox justify="flex-start" style={{ minHeight: "100vh" }}>
 					<ServerContainer mainAnimation={main} />
-					<SideBarContainer mainAnimation={main} />
-					<TabContainer mainAnimation={main} />
+					<FlexBox style={{ width: "100%" }}>
+						<SideBarContainer mainAnimation={main} />
+						<TabContainer mainAnimation={main} />
+					</FlexBox>
 				</FlexBox>
 			)}
 		/>

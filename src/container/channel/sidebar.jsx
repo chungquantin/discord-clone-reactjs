@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { SideBar, Tooltip } from "../../components";
 import { faUserFriends } from "@fortawesome/free-solid-svg-icons";
 import * as ASSETS from "../../constants/assets";
-import UserBubble from "../../components/Sidebar/custom/UserBubble.js";
+import UserItem from "../../components/custom/Sidebar/UserItem";
 import {
 	faHeadphones,
 	faMicrophone,
@@ -30,7 +30,7 @@ function SideBarContainer({ mainAnimation }) {
 						+ <Tooltip id="tt-add-dm" effect="solid" />
 					</button>
 				</SideBar.Header>
-				<UserBubble
+				<UserItem
 					status="online"
 					type="closable"
 					id="#1"
@@ -38,7 +38,7 @@ function SideBarContainer({ mainAnimation }) {
 					subText="Minecraft"
 					src={ASSETS.TEST_AVATAR}
 				/>
-				<UserBubble
+				<UserItem
 					status="offline"
 					type="closable"
 					id="#2"
@@ -46,7 +46,7 @@ function SideBarContainer({ mainAnimation }) {
 					subText="League Of Legends"
 					src={null}
 				/>
-				<UserBubble
+				<UserItem
 					status="offline"
 					type="closable"
 					id="#3"
@@ -56,7 +56,7 @@ function SideBarContainer({ mainAnimation }) {
 				/>
 			</SideBar.Inner>
 			<SideBar.Panel justify="flex-start">
-				<UserBubble
+				<UserItem
 					className="__personal"
 					status="online"
 					type="monitor"

@@ -1,6 +1,6 @@
 import React from "react";
 import { Tooltip } from "../../index";
-import * as Style from "../styles/Scroller";
+import * as Style from "../../Scroller/styles/Scroller";
 
 function BubbleWithTooltip({ dataFor, children, tooltip, ...restProps }) {
 	return (

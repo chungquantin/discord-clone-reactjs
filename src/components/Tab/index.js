@@ -34,4 +34,28 @@ Tab.StyledTextButton = function TabStyledTextButton({
 	);
 };
 
+Tab.IconButton = function TabIconButton({ icon, to, ...restProps }) {
+	return (
+		<Style.Link {...restProps} href={to}>
+			<Style.IconButton icon={icon} />
+		</Style.Link>
+	);
+};
+
+Tab.Active = function TabActive({ children, ...restProps }) {
+	return <Style.Active {...restProps}>{children}</Style.Active>;
+};
+
+Tab.ActiveCard = function TabActiveCard({ children, ...restProps }) {
+	return <Style.ActiveCard {...restProps}>{children}</Style.ActiveCard>;
+};
+
+Tab.Text = function TabText({ children, ...restProps }) {
+	return <Style.Text {...restProps}>{children}</Style.Text>;
+};
+
+Tab.DynamicSection = function TabDynamicSection({ children, ...restProps }) {
+	return <Style.DynamicSection {...restProps}>{children}</Style.DynamicSection>;
+};
+
 export default Tab;

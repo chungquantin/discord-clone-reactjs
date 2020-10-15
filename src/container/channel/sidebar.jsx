@@ -17,16 +17,16 @@ function SideBarContainer({ mainAnimation }) {
 		<SideBar>
 			{/* React.createPortals for searchBar */}
 			<SideBar.Inner>
-				<SideBar.SearchBar>Find or start a conversation</SideBar.SearchBar>
+				<SideBar.SearchBar>Tìm hoặc bắt đầu cuộc trò chuyện</SideBar.SearchBar>
 			</SideBar.Inner>
 			<SideBar.Inner direction="column">
 				<SideBar.Option className="__selected">
 					<SideBar.Icon icon={faUserFriends} />
-					<SideBar.Content text="Friends" />
+					<SideBar.Content text="Bạn bè" />
 				</SideBar.Option>
 				<SideBar.Header>
-					<span>Direct Messages</span>
-					<button data-tip="Create DM" data-for="tt-add-dm">
+					<span>Tin nhắn trực tiếp</span>
+					<button data-tip="Tạo DM" data-for="tt-add-dm">
 						+ <Tooltip id="tt-add-dm" effect="solid" />
 					</button>
 				</SideBar.Header>
@@ -76,7 +76,7 @@ function SideBarContainer({ mainAnimation }) {
 						data-for="mic-tt"
 					/>
 					<Tooltip id="mic-tt" effect="solid">
-						{micOn ? "Mute" : "Unmute"}
+						{micOn ? "Tắt âm" : "Bỏ mute"}
 					</Tooltip>
 					<SideBar.Icon
 						icon={faHeadphones}
@@ -88,11 +88,11 @@ function SideBarContainer({ mainAnimation }) {
 						data-for="headphone-tt"
 					/>
 					<Tooltip id="headphone-tt" effect="solid">
-						{headphoneOn ? "Deafen" : "Undeafen"}
+						{headphoneOn ? "Tắt tiếng" : "Bỏ tắt tiếng"}
 					</Tooltip>
 					<SideBar.Icon data-tip data-for="cog-tt" icon={faCog} />
 					<Tooltip id="cog-tt" effect="solid">
-						Setting
+						Cài đặt người dùng
 					</Tooltip>
 				</SideBar.MonitorSection>
 			</SideBar.Panel>

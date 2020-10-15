@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import useBreakPoint from "../../hooks/useBreakPoint";
-import withOptions from "../../helpers/withOptions";
+import withOptions from "../../helpers/hoc/withOptions";
 // -- Backend --
 import { signUpWithEmailAndPassword } from "../../core/graphql/actions";
 import { useMutation } from "@apollo/client";

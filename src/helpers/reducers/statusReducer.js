@@ -1,4 +1,4 @@
-import * as ASSETS from "../constants/assets";
+import * as ASSETS from "../../constants/assets";
 
 export default function statusReducer(state, action) {
 	switch (action.type) {

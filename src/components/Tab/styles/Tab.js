@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { FlexBox } from "../../index";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export const Container = styled.div`
 	box-sizing: border-box;
@@ -8,7 +9,7 @@ export const Container = styled.div`
 	background-color: green;
 `;
 
-export const Body = styled.div`
+export const Body = styled(FlexBox)`
 	width: 100%;
 	background-color: #36393f;
 	height: calc(100% - 48px);
@@ -19,7 +20,7 @@ export const Bar = styled(FlexBox)`
 	width: 100%;
 	position: fixed;
 	height: 48px;
-	padding: 0px 8px;
+	padding: 0px 8px 0px 8px;
 	background-color: #36393f;
 	box-shadow: 0 1px 0 rgba(4, 4, 5, 0.2), 0 1.5px 0 rgba(6, 6, 7, 0.05),
 		0 2px 0 rgba(4, 4, 5, 0.05);
@@ -30,7 +31,7 @@ export const Separator = styled.div`
 	background-color: hsla(0, 0%, 100%, 0.06);
 	border-radius: 1px;
 	width: 1px;
-	margin: 0px 6px;
+	margin: 0px 16px;
 `;
 
 export const TextButton = styled.button`
@@ -39,7 +40,7 @@ export const TextButton = styled.button`
 	color: #b9bbbe;
 	font-size: 16px;
 	cursor: pointer;
-	margin: 0px 8px;
+	margin-right: 16px;
 	border-radius: 4px;
 	padding-top: 1.5px;
 	padding-bottom: 1.5px;
@@ -65,6 +66,45 @@ export const StyledTextButton = styled(TextButton)`
 
 export const Header = styled.h3`
 	color: white;
-	font-size: 16px;
+	font-size: 14px;
 	margin-right: 10px;
+`;
+
+export const IconButton = styled(FontAwesomeIcon)`
+	color: #b9bbbe;
+	cursor: pointer;
+`;
+
+export const Link = styled.a`
+	margin-right: 15px;
+`;
+
+export const Active = styled.section`
+	box-sizing: border-box;
+	height: 100%;
+	background-color: #2f3136;
+	width: 367px;
+	padding: 16px 16px 0px 16px;
+`;
+
+export const ActiveCard = styled(FlexBox)`
+	background-color: #36393f;
+	margin: 8px 0px;
+	box-sizing: border-box;
+	height: fit-content;
+	border-radius: 3px;
+	padding: 16px;
+`;
+
+export const Text = styled.p`
+	text-align: center;
+	color: #b9bbbe;
+	font-size: 13px;
+	line-height: 18px;
+`;
+
+export const DynamicSection = styled(FlexBox)`
+	background-color: transparent;
+	width: calc(100% - 367px);
+	height: 100%;
 `;

@@ -13,7 +13,7 @@ function ServerContainer() {
 		<Scroller>
 			<Scroller.Section>
 				<Scroller.Item style={{ paddingTop: "12px" }}>
-					<BubbleWithTooltip tooltip="Home" dataFor="tt-bb-home" to="#">
+					<BubbleWithTooltip tooltip="Trang chủ" dataFor="tt-bb-home" to="#">
 						<Scroller.Picture
 							src={ASSETS.NO_BG_LOGO}
 							alt="Default"
@@ -27,7 +27,7 @@ function ServerContainer() {
 			<Scroller.Section direction="column">
 				<Scroller.Item>
 					<BubbleWithTooltip
-						tooltip="Add a Server"
+						tooltip="Thêm Máy Chủ"
 						dataFor="tt-bb-add"
 						className="__func_item"
 						to="#"
@@ -37,7 +37,7 @@ function ServerContainer() {
 				</Scroller.Item>
 				<Scroller.Item>
 					<BubbleWithTooltip
-						tooltip="Explore Public Servers"
+						tooltip="Khám Phá Máy Chủ Công Khai"
 						dataFor="tt-bb-servers"
 						className="__func_item"
 						to="#"
@@ -50,7 +50,7 @@ function ServerContainer() {
 			<Scroller.Section direction="column">
 				<Scroller.Item>
 					<BubbleWithTooltip
-						tooltip="Download Apps"
+						tooltip="Tải Ứng Dụng"
 						dataFor="tt-bb-download"
 						className="__func_item"
 						to="#"

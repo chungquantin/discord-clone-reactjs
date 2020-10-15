@@ -84,7 +84,7 @@ SideBar.SubContent = function SideBarSubContent({
 	return (
 		<Style.SubContent {...restProps}>
 			{text != null
-				? "Playing " +
+				? "Đang chơi " +
 				  (text.length > limit ? `${text.substring(0, limit)}...` : text)
 				: null}
 		</Style.SubContent>

@@ -12,10 +12,17 @@ export const QR_DISCORD = `${src}qr/discord.png`;
 export const TEST_AVATAR = `${src}avatars/test.png`;
 export const TEST_AVATAR_2 = `${src}avatars/test2.jpg`;
 
-export const DEFAULT_AVATAR_1 = `${src}avatars/default/defaultAva1.png`;
-export const DEFAULT_AVATAR_2 = `${src}avatars/default/defaultAva2.png`;
+const defaultSrc = `${src}avatars/default`;
+export const DEFAULT_AVATAR_1 = `${defaultSrc}/defaultAva1.png`;
+export const DEFAULT_AVATAR_2 = `${defaultSrc}/defaultAva2.png`;
 
-export const STATUS_OFFLINE = `${src}avatars/status/offline.svg`;
-export const STATUS_ONLINE = `${src}avatars/status/online.svg`;
-export const STATUS_IDLE = `${src}avatars/status/idle.svg`;
-export const STATUS_DISTURB = `${src}avatars/status/disturb.svg`;
+const statusSrc = `${src}avatars/status`;
+export const STATUS_OFFLINE = `${statusSrc}/offline.svg`;
+export const STATUS_ONLINE = `${statusSrc}/online.svg`;
+export const STATUS_IDLE = `${statusSrc}/idle.svg`;
+export const STATUS_DISTURB = `${statusSrc}/disturb.svg`;
+
+export const JUMBO_ALL = `${src}jumbotron/all.svg`;
+export const JUMBO_ONLINE = `${src}jumbotron/online.svg`;
+export const JUMBO_PENDING = `${src}jumbotron/pending.svg`;
+export const JUMBO_BLOCKED = `${src}jumbotron/blocked.svg`;

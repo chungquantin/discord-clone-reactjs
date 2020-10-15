@@ -1,5 +1,5 @@
 import React from "react";
-import { Form } from "../components";
+import { Form } from "../../components";
 
 export default (SelectComponent) => {
 	return (min, max, format, placeholder) => {

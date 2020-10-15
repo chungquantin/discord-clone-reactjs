@@ -1,7 +1,7 @@
 import React, { Fragment, useReducer, useEffect } from "react";
 import * as Style from "../../Sidebar/styles/Sidebar";
 import { Tooltip } from "../../index";
-import statusReducer from "../../../helpers/statusReducer";
+import statusReducer from "../../../helpers/reducers/statusReducer";
 
 const initialState = {
 	source: "",

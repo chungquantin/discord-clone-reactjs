@@ -33,6 +33,7 @@ export const SearchBar = styled.button`
 	border-radius: 4px;
 	text-align: left;
 	color: #72767d;
+	font-size: 13px;
 	font-weight: 600;
 	cursor: pointer;
 `;

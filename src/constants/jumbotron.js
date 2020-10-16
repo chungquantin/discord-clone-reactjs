@@ -17,6 +17,6 @@ export default {
 	},
 	BLOCKED: {
 		source: ASSETS.JUMBO_BLOCKED,
-		text: `Bạn không thể chặn ${ALIAS} được}`,
+		text: `Bạn không thể chặn ${ALIAS} được`,
 	},
 };

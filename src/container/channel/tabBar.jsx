@@ -45,7 +45,12 @@ function TabBar() {
 				>
 					Đã chặn
 				</Tab.TextButton>
-				<Tab.StyledTextButton>Thêm bạn</Tab.StyledTextButton>
+				<Tab.StyledTextButton
+					onClick={() => setTabIndex(5)}
+					className={tabIndex === 5 ? "__selected" : null}
+				>
+					Thêm bạn
+				</Tab.StyledTextButton>
 			</FlexBox>
 			<FlexBox
 				style={{

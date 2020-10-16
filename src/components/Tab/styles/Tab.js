@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { FlexBox } from "../../index";
+import { FlexBox, Form } from "../../index";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export const Container = styled.div`
@@ -62,6 +62,10 @@ export const StyledTextButton = styled(TextButton)`
 		background-color: #43b581;
 		color: white;
 	}
+	&.__selected {
+		background-color: #38524c;
+		color: #3fae81;
+	}
 `;
 
 export const Header = styled.h3`
@@ -110,5 +114,52 @@ export const Panel = styled(FlexBox)`
 
 	@media (max-width: 1000px) {
 		width: 100%;
+	}
+`;
+
+export const Button = styled(StyledTextButton)`
+	margin-top: 20px;
+	padding: 8px 14px;
+	background-color: #677bc4;
+	&:hover {
+		background-color: rgb(88, 111, 196);
+	}
+`;
+
+export const Input = styled(Form.Input)`
+	border-radius: 8px;
+	height: 52px;
+	box-sizing: border-box;
+	width: 100%;
+`;
+
+export const AddFriendArea = styled.div`
+	background-color: red;
+	width: 100%;
+	background-color: #36393f;
+	padding: 15px 30px;
+	padding-bottom: 20px;
+	box-sizing: border-box;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+	${Text} {
+		width: fit-content;
+		font-size: 14px;
+		color: #dcddde;
+	}
+	${Header} {
+		margin-bottom: 10px;
+		font-size: 16px;
+	}
+	div {
+		position: relative;
+		margin-top: 20px;
+		${Button} {
+			margin: 0;
+			position: absolute;
+			font-size: 14px;
+			padding: 5px 10px;
+			right: 14px;
+			top: 12px;
+		}
 	}
 `;

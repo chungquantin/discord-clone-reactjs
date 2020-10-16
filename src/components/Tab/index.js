@@ -62,4 +62,16 @@ Tab.Panel = function TabPanel({ index, children, ...restProps }) {
 	);
 };
 
+Tab.Button = function TabButton({ children, ...restProps }) {
+	return <Style.Button {...restProps}>{children}</Style.Button>;
+};
+
+Tab.Input = function TabInput({ children, ...restProps }) {
+	return <Style.Input {...restProps}>{children}</Style.Input>;
+};
+
+Tab.AddFriendArea = function TabAddFriendArea({ children, ...restProps }) {
+	return <Style.AddFriendArea {...restProps}>{children}</Style.AddFriendArea>;
+};
+
 export default Tab;

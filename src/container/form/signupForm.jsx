@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import useBreakPoint from "../../hooks/useBreakPoint";
 import withOptions from "../../helpers/hoc/withOptions";
+import { useHistory } from "react-router-dom";
 // -- Backend --
 import { signUpWithEmailAndPassword } from "../../core/graphql/actions";
 import { useMutation } from "@apollo/client";
@@ -28,10 +29,12 @@ function SignUpContainer({ animatedVariables }) {
 	const [additionalError, setAdditionalErrors] = useState("");
 	const [signUp] = useMutation(SIGN_UP);
 	const breakPoint = useBreakPoint();
+	const history = useHistory();
 
 	return (
 		<Formik
-			validateOnChange={true}
+			validateOnBlur={false}
+			validateOnChange={false}
 			initialValues={{
 				email: "",
 				password: "",
@@ -44,7 +47,8 @@ function SignUpContainer({ animatedVariables }) {
 				setSubmitting(true);
 				try {
 					let token = await signUpWithEmailAndPassword(signUp, data);
-					console.log(token);
+					localStorage.setItem("authUser", token);
+					history.push(ROUTES.__default_channel);
 				} catch (error) {
 					setAdditionalErrors(error.message);
 				}

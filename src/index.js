@@ -3,6 +3,8 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import { GlobalStyles } from "./global-styles";
+import { FirebaseContext } from "./contexts/FirebaseContext";
+import { firebase } from "./core/lib/firebase.prod";
 // -- GraphQL & Apollo Client --
 import { ApolloProvider } from "@apollo/client";
 import ApolloClientServer from "./core/apollo";
@@ -15,8 +17,10 @@ const client = ApolloClientServer();
 ReactDOM.render(
 	<Provider store={store}>
 		<ApolloProvider client={client}>
-			<GlobalStyles />
-			<App />
+			<FirebaseContext.Provider value={{ firebase }}>
+				<GlobalStyles />
+				<App />
+			</FirebaseContext.Provider>
 		</ApolloProvider>
 	</Provider>,
 	document.getElementById("root")

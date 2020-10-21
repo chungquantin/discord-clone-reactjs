@@ -7,6 +7,7 @@ import { Form, FlexBox } from "../../components";
 // -- Backend --
 import { signInWithEmailAndPassword } from "../../core/graphql/actions";
 import { useMutation } from "@apollo/client";
+import { useHistory } from "react-router-dom";
 import { SIGN_IN } from "../../core/graphql/mutations";
 // -- Constants --
 import * as ROUTES from "../../constants/routes";
@@ -24,10 +25,12 @@ function LoginFormContainer({ animatedVariables, key }) {
 	const [signIn] = useMutation(SIGN_IN);
 	const [additionalError, setAdditionalErrors] = useState("");
 	const breakPoint = useBreakPoint();
+	const history = useHistory();
 
 	return (
 		<Formik
-			validateOnChange={true}
+			validateOnChange={false}
+			validateOnBlur={false}
 			initialValues={{
 				email: "",
 				password: "",
@@ -35,13 +38,11 @@ function LoginFormContainer({ animatedVariables, key }) {
 			onSubmit={async (data, { setSubmitting }) => {
 				setSubmitting(true);
 				try {
-					let token = await signInWithEmailAndPassword(
-						signIn,
-						data.email,
-						data.password
-					);
+					let token = await signInWithEmailAndPassword(signIn, data);
 					localStorage.setItem("authUser", token);
+					history.push(ROUTES.__default_channel);
 				} catch (error) {
+					console.log(error);
 					setAdditionalErrors(error.message);
 				}
 				setSubmitting(false);

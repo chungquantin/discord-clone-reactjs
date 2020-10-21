@@ -1,3 +1,5 @@
 module.exports = {
-	uri: "http://localhost:3001/graphql",
+	uri: "http://discord-clone-server.herokuapp.com/graphql",
 };
+
+//http://discord-clone-server.herokuapp.com/

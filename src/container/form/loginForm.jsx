@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import useBreakPoint from "../../hooks/useBreakPoint";
 // -- Components --
 import { QRContainer } from "../index";
@@ -7,7 +7,7 @@ import { Form, FlexBox } from "../../components";
 // -- Backend --
 import { useMutation } from "@apollo/client";
 import { useHistory } from "react-router-dom";
-import { SIGN_IN } from "../../core/graphql/mutations";
+import { SIGN_IN } from "../../core/graphql/mutations/userMutation";
 // -- Redux --
 import { connect } from "react-redux";
 import { loginUser } from "../../core/redux/actions/user.action.js";
@@ -25,7 +25,6 @@ const validationSchema = yup.object({
 
 function LoginFormContainer({ animatedVariables, ...props }) {
 	const [signIn] = useMutation(SIGN_IN);
-	const [additionalError, setAdditionalErrors] = useState("");
 	const breakPoint = useBreakPoint();
 	const history = useHistory();
 	return (
@@ -36,15 +35,12 @@ function LoginFormContainer({ animatedVariables, ...props }) {
 				email: "",
 				password: "",
 			}}
-			onSubmit={async (data, { setSubmitting }) => {
-				setSubmitting(true);
-
+			onSubmit={async (data) => {
 				await props.loginUser(signIn, data, history);
-				setSubmitting(false);
 			}}
 			validationSchema={validationSchema}
 		>
-			{({ values, isSubmitting, handleSubmit, errors }) => (
+			{({ values, handleSubmit, errors }) => (
 				<Form.Wrapper>
 					<Form className="__hasNoBackground">
 						<Form.Inner
@@ -75,7 +71,10 @@ function LoginFormContainer({ animatedVariables, ...props }) {
 											type="input"
 											label="Email"
 											name="email"
-											errorText={errors.email || additionalError}
+											errorText={
+												errors.email ||
+												(props.UI.errors && props.UI.errors.login)
+											}
 											as={Form.InputWithLabelAndError}
 										/>
 										<Field
@@ -89,7 +88,7 @@ function LoginFormContainer({ animatedVariables, ...props }) {
 										<Form.Link to="#">
 											<span>Quên mật khẩu?</span>
 										</Form.Link>
-										<Form.Button type="submit" disabled={isSubmitting}>
+										<Form.Button type="submit" disabled={props.UI.loading}>
 											Đăng nhập
 										</Form.Button>
 										<Form.Text>
@@ -119,8 +118,12 @@ function LoginFormContainer({ animatedVariables, ...props }) {
 	);
 }
 
+const mapStateToProps = (state) => ({
+	UI: state.ui,
+});
+
 const mapActionToProps = {
 	loginUser,
 };
 
-export default connect(null, mapActionToProps)(LoginFormContainer);
+export default connect(mapStateToProps, mapActionToProps)(LoginFormContainer);

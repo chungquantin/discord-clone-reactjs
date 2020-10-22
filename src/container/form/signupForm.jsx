@@ -1,11 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 import useBreakPoint from "../../hooks/useBreakPoint";
 import withOptions from "../../helpers/hoc/withOptions";
 import { useHistory } from "react-router-dom";
 // -- Backend --
-import { signUpWithEmailAndPassword } from "../../core/graphql/actions";
 import { useMutation } from "@apollo/client";
-import { SIGN_UP } from "../../core/graphql/mutations";
+import { SIGN_UP } from "../../core/graphql/mutations/userMutation";
+import { connect } from "react-redux";
+import { signupUser } from "../../core/redux/actions/user.action";
 // -- Components --
 import { Form, FlexBox } from "../../components";
 import { Formik, Field } from "formik";
@@ -25,8 +26,7 @@ const validateSchema = yup.object({
 });
 const __current_year__ = parseInt(new Date().getFullYear());
 
-function SignUpContainer({ animatedVariables }) {
-	const [additionalError, setAdditionalErrors] = useState("");
+function SignUpContainer({ animatedVariables, ...props }) {
 	const [signUp] = useMutation(SIGN_UP);
 	const breakPoint = useBreakPoint();
 	const history = useHistory();
@@ -43,19 +43,11 @@ function SignUpContainer({ animatedVariables }) {
 				birthday: { day: "Ngày", month: "Tháng", year: "Năm" },
 			}}
 			validationSchema={validateSchema}
-			onSubmit={async (data, { setSubmitting }) => {
-				setSubmitting(true);
-				try {
-					let token = await signUpWithEmailAndPassword(signUp, data);
-					localStorage.setItem("authUser", token);
-					history.push(ROUTES.__default_channel);
-				} catch (error) {
-					setAdditionalErrors(error.message);
-				}
-				setSubmitting(false);
+			onSubmit={async (data) => {
+				props.signupUser(signUp, data, history);
 			}}
 		>
-			{({ values, isSubmitting, handleSubmit, errors }) => (
+			{({ values, handleSubmit, errors }) => (
 				<Form.Wrapper>
 					<Form className="__hasNoBackground">
 						<Form.Inner
@@ -83,7 +75,9 @@ function SignUpContainer({ animatedVariables }) {
 									type="input"
 									label="Email"
 									name="email"
-									errorText={errors.email || additionalError}
+									errorText={
+										errors.email || (props.UI.errors && props.UI.errors.signup)
+									}
 									as={Form.InputWithLabelAndError}
 								/>
 								<Field
@@ -138,7 +132,7 @@ function SignUpContainer({ animatedVariables }) {
 										)}
 									></Field>
 								</FlexBox>
-								<Form.Button type="submit" disabled={isSubmitting}>
+								<Form.Button type="submit" disabled={props.UI.loading}>
 									Tiếp tục
 								</Form.Button>
 								<Form.Link to={ROUTES.__login}>
@@ -169,4 +163,12 @@ function SignUpContainer({ animatedVariables }) {
 	);
 }
 
-export default SignUpContainer;
+const mapStateToProps = (state) => ({
+	UI: state.ui,
+});
+
+const mapActionToProps = {
+	signupUser,
+};
+
+export default connect(mapStateToProps, mapActionToProps)(SignUpContainer);

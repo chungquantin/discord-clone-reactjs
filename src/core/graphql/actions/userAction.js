@@ -1,4 +1,10 @@
-const signUpAction = async (
+export const signInAction = async (method, { email, password }) => {
+	let res = await method({ variables: { email, password } });
+	let token = res.data.signIn.token;
+	return token;
+};
+
+export const signUpAction = async (
 	method,
 	{ email, password, confirmPassword, username, birthday }
 ) => {
@@ -8,5 +14,3 @@ const signUpAction = async (
 	let token = res.data.signUp.token;
 	return token;
 };
-
-export default signUpAction;

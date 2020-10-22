@@ -5,8 +5,7 @@ import {
 } from "../types/user.types";
 import { LOADING_UI, SET_ERRORS, CLEAR_ERRORS } from "../types/ui.types";
 
-import { SIGN_IN, SIGN_UP } from "../../graphql/mutations";
-import { signInWithEmailAndPassword } from "../../graphql/actions";
+import { signInAction, signUpAction } from "../../graphql/actions/userAction";
 import * as ROUTES from "../../../constants/routes";
 
 import axios from "axios";
@@ -14,7 +13,7 @@ import axios from "axios";
 export const loginUser = (method, userData, history) => async (dispatch) => {
 	dispatch({ type: LOADING_UI });
 	try {
-		let token = await signInWithEmailAndPassword(method, userData);
+		let token = await signInAction(method, userData);
 		setAuthorizationHeader(token);
 		history.push(ROUTES.__default_channel);
 	} catch (error) {
@@ -29,22 +28,21 @@ export const logoutUser = () => (dispatch) => {
 	dispatch({ type: SET_UNAUTHENTICATED });
 };
 
-// export const signupUser = (newUserData, history) => (dispatch) => {
-// 	dispatch({ type: LOADING_UI });
-// 	axios
-// 		.post("/signup", newUserData)
-// 		.then((res) => {
-// 			console.log(res.data);
-// 			setAuthorizationHeader(res.data.token);
-// 			dispatch(getUserData());
-// 			dispatch({ type: CLEAR_ERRORS });
-// 			history.push("/");
-// 		})
-// 		.catch((err) => {
-// 			console.log(err);
-// 			dispatch({ type: SET_ERRORS, payload: err.response.data });
-// 		});
-// };
+export const getUserData = (id) => (dispatch) => {
+	dispatch({ type: LOADING_USER });
+};
+
+export const signupUser = (method, userData, history) => async (dispatch) => {
+	dispatch({ type: LOADING_UI });
+	try {
+		let token = await signUpAction(method, userData);
+		setAuthorizationHeader(token);
+		history.push(ROUTES.__default_channel);
+	} catch (error) {
+		console.log(error);
+		dispatch({ type: SET_ERRORS, payload: { signup: error.message } });
+	}
+};
 
 const setAuthorizationHeader = (token) => {
 	const FBIdToken = `Bearer ${token}`;

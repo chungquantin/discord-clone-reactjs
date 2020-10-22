@@ -17,7 +17,7 @@ function TabContainer() {
 				{tabIndex === 3 && <PendingPanel />}
 				{tabIndex === 4 && <BlockedPanel />}
 				{tabIndex === 5 && <AllPanel toggle={true} />}
-				{breakPoint > 900 && <ActiveSection />}
+				{breakPoint > 1100 && <ActiveSection />}
 			</Tab.Body>
 		</Tab>
 	);

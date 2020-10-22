@@ -5,10 +5,12 @@ import { QRContainer } from "../index";
 import { Formik, Field } from "formik";
 import { Form, FlexBox } from "../../components";
 // -- Backend --
-import { signInWithEmailAndPassword } from "../../core/graphql/actions";
 import { useMutation } from "@apollo/client";
 import { useHistory } from "react-router-dom";
 import { SIGN_IN } from "../../core/graphql/mutations";
+// -- Redux --
+import { connect } from "react-redux";
+import { loginUser } from "../../core/redux/actions/user.action.js";
 // -- Constants --
 import * as ROUTES from "../../constants/routes";
 import * as ASSETS from "../../constants/assets";
@@ -21,12 +23,11 @@ const validationSchema = yup.object({
 	password: validRuleSet.password,
 });
 
-function LoginFormContainer({ animatedVariables, key }) {
+function LoginFormContainer({ animatedVariables, ...props }) {
 	const [signIn] = useMutation(SIGN_IN);
 	const [additionalError, setAdditionalErrors] = useState("");
 	const breakPoint = useBreakPoint();
 	const history = useHistory();
-
 	return (
 		<Formik
 			validateOnChange={false}
@@ -37,14 +38,8 @@ function LoginFormContainer({ animatedVariables, key }) {
 			}}
 			onSubmit={async (data, { setSubmitting }) => {
 				setSubmitting(true);
-				try {
-					let token = await signInWithEmailAndPassword(signIn, data);
-					localStorage.setItem("authUser", token);
-					history.push(ROUTES.__default_channel);
-				} catch (error) {
-					console.log(error);
-					setAdditionalErrors(error.message);
-				}
+
+				await props.loginUser(signIn, data, history);
 				setSubmitting(false);
 			}}
 			validationSchema={validationSchema}
@@ -124,4 +119,8 @@ function LoginFormContainer({ animatedVariables, key }) {
 	);
 }
 
-export default LoginFormContainer;
+const mapActionToProps = {
+	loginUser,
+};
+
+export default connect(null, mapActionToProps)(LoginFormContainer);

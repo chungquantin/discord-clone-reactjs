@@ -1,22 +1,16 @@
-import { useState, useEffect, useContext } from "react";
-import { FirebaseContext } from "../contexts/FirebaseContext";
+import { useState, useEffect } from "react";
+import jwt from "jsonwebtoken";
 
 function useAuthListener() {
-	const [user, setUser] = useState(localStorage.getItem("authUser"));
-	const { firebase } = useContext(FirebaseContext);
+	const user = null;
 
-	// useEffect(() => {
-	// 	const listener = firebase.auth().onAuthStateChanged((authUser) => {
-	// 		if (authUser) {
-	// 			localStorage.setItem("authUser", JSON.stringify(authUser));
-	// 			setUser(authUser);
-	// 		} else {
-	// 			localStorage.removeItem("authUser");
-	// 			setUser(null);
-	// 		}
-	// 	});
-	// 	return () => listener();
-	// }, [firebase, user]);
+	const [accessToken, setAccessToken] = useState(
+		localStorage.getItem("authUser")
+	);
+
+	useEffect(() => {
+		console.log("debugging data :", accessToken);
+	}, [accessToken]);
 
 	return { user };
 }

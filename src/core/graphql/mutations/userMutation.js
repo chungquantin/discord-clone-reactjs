@@ -27,3 +27,16 @@ export const SIGN_UP = gql`
 		}
 	}
 `;
+
+export const GET_AUTH_USER = gql`
+	query GetAuthUser {
+		getAuthUser {
+			credential {
+				username
+				userId
+				birthday
+				email
+			}
+		}
+	}
+`;

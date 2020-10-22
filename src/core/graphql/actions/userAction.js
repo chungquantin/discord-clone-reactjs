@@ -14,3 +14,8 @@ export const signUpAction = async (
 	let token = res.data.signUp.token;
 	return token;
 };
+
+export const getAuthUser = async (method) => {
+	let authUser = await method();
+	return authUser;
+};

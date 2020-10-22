@@ -5,7 +5,11 @@ import {
 } from "../types/user.types";
 import { LOADING_UI, SET_ERRORS, CLEAR_ERRORS } from "../types/ui.types";
 
-import { signInAction, signUpAction } from "../../graphql/actions/userAction";
+import {
+	signInAction,
+	signUpAction,
+	getAuthUser,
+} from "../../graphql/actions/userAction";
 import * as ROUTES from "../../../constants/routes";
 
 import axios from "axios";
@@ -30,6 +34,15 @@ export const logoutUser = () => (dispatch) => {
 
 export const getUserData = (id) => (dispatch) => {
 	dispatch({ type: LOADING_USER });
+};
+
+export const getAuthUserData = (method) => async (dispatch) => {
+	try {
+		let authUser = await getAuthUser(method);
+		console.log(authUser);
+	} catch (error) {
+		dispatch({ type: SET_ERRORS, payload: { authenticate: error.message } });
+	}
 };
 
 export const signupUser = (method, userData, history) => async (dispatch) => {
